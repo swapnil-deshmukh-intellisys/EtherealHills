@@ -1,0 +1,99 @@
+/* General Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004d40;
+  padding: 1rem 2rem;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+#logo {
+  height: 50px;
+  cursor: pointer;
+}
+
+/* Desktop Menu Styles */
+.desktopmenu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.desktopmenuListitem {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.desktopmenuListitem:hover {
+  color: #ffeb3b;
+}
+
+.book-now-btn {
+  background-color: #ff5722;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.book-now-btn:hover {
+  background-color: #e64a19;
+}
+
+.book-now-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Mobile Menu Icon */
+.mobile-menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.active {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
+
+/* Mobile Menu Styles */
+.navMenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background-color: #004d40;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.mobilemenuListitem {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.mobilemenuListitem:hover {
+  background-color: #00695c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .desktopmenu {
+    display: none;
+  }
+
+  .mobile-menu-icon {
+    display: block;
+  }
+}

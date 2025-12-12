@@ -1,0 +1,101 @@
+/* card container style */
+.card-container2 {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 40px; */
+  justify-content: space-evenly;
+  /* padding: 20px; */
+  box-sizing: border-box;
+}
+
+/* Card style */
+.card2 {
+  border: 1px solid #ccc;
+  padding: 30px;  /* Increased padding */
+  width: 350px;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+  text-align: center;
+  background-color: rgba(228, 226, 226, 0.671);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 50px;
+}
+
+/* Hover effect on card */
+.card2:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Title styling */
+.card2 h3 {
+  margin-bottom: 15px;  /* Increased margin for spacing */
+  font-size: 24px;  /* Larger text size */
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #eee;  /* Added a line under the title */
+  padding-bottom: 10px;  /* Added padding for spacing */
+}
+
+/* Styling for list items */
+.card2 ul {
+  list-style-type: none;
+  /* padding: 0; */
+}
+
+.card2 li {
+  margin: 15px 0;  /* Increased margin for spacing */
+  font-size: 16px;  /* Larger text size */
+  color: #555;
+  font-weight: 400;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+  .card2-container2 {
+    justify-content: center;
+  }
+
+  .card2 {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card2-container2 {
+    justify-content: center;
+  }
+
+  .card2 {
+    width: 200px;
+  }
+
+  .card2 h3 {
+    font-size: 22px;  /* Larger title size on medium screens */
+  }
+
+  .card2 li {
+    font-size: 16px;  /* Larger list item size */
+  }
+}
+
+@media (max-width: 480px) {
+  .card2-container2 {
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .card2 {
+    width: 90%;
+    margin: 15px 0;  /* Increased margin between card2s */
+    padding: 20px;  /* More padding */
+  }
+
+  .card2 h3 {
+    font-size: 20px;  /* Larger title size on mobile */
+  }
+
+  .card2 li {
+    font-size: 16px;  /* Larger list item size on mobile */
+  }
+}

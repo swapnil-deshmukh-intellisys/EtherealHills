@@ -1,0 +1,214 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app2 {
+  text-align: center;
+  padding: 20px;
+}
+
+.app2 h1 {
+  font-size: 2rem;
+  margin: 40px 0 20px;
+}
+
+/* Card Container */
+.card-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 40px 0px 40px 0px;
+  overflow: hidden;
+  width: 350px;
+  height: 500px;
+  margin: 20px;
+  box-shadow: 15px 15px 10px gray;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+.see-features{
+  background-color: transparent;
+  border: none;
+  margin-top: 10px;
+}
+.card-image-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title2 {color: black;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card-price {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.add-to-cart {
+  background-color: #99775C;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart:hover {
+  background-color: #e9d7c0;
+}
+
+
+
+/* Book Now Button */
+.book-now-btn {
+  background-color: #99775C;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  background: linear-gradient(to right, #d6ad8b 50%, #99775C 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.5s ease-out;
+  position: relative; /* Required for positioning pseudo-elements */
+}
+
+.book-now-btn:hover {
+  background-color: #ae7b51;
+  background-position: left bottom;
+  transform: scale(1.1);
+  
+  padding: 0.8rem 2rem 0.8rem 0.7rem;
+}
+
+/* Add symbol on hover */
+.book-now-btn::after {
+  content: "➔"; 
+  color: white;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  /* color: black; */
+}
+
+.book-now-btn:hover::after {
+  opacity: 1;
+  
+
+}
+
+.book-now-btn a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Popup Styles */
+.pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.pop-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close-pop {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.disabled-button{
+  background-color: #c5bfbb;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .card {
+    width: 45%;
+    height: 400px;
+  }
+
+  .add-to-cart {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
+  .book-now-btn {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 90%;
+    height: auto;
+    margin: 10px 0;
+  }
+
+  .add-to-cart {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .book-now-btn {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
+
+

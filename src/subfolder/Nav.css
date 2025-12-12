@@ -1,0 +1,223 @@
+/* General Navbar Styles */
+.nav-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  height: 80px;
+  padding: 1rem 2rem;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+#nav-logo {
+  height: 50px;
+  cursor: pointer;
+}
+
+.nav-main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Desktop Menu Styles */
+.nav-desktop-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-desktop-menu-list-item {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-desktop-menu-list-item:hover {
+  color: #ffeb3b;
+}
+
+.nav-desktop-book-now .nav-book-now-btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  background: linear-gradient(to right, #6b5441 50%, #99775C 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.5s ease-out;
+  position: relative; /* Required for positioning pseudo-elements */
+}
+
+.nav-desktop-book-now  .nav-book-now-btn:hover {
+  background-color: #ae7b51;
+  background-position: left bottom;
+  transform: scale(1);
+  padding: 0.8rem 2rem 0.8rem 0.7rem;
+}
+
+/* Add symbol on hover */
+.nav-book-now-btn::after {
+  content: "➔"; 
+  color: white;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  /* color: black; */
+}
+
+.nav-book-now-btn:hover::after {
+  opacity: 1;
+  
+
+}
+
+
+.nav-book-now-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Active Tab Styles */
+.nav-active {
+  font-weight: bold;
+  color: #D9D418;
+}
+
+/* Mobile Menu Icon */
+.nav-mobile-menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Mobile Menu Styles */
+.nav-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background-color: black;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.nav-mobile-menu-list-item {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.nav-mobilemenuListitem:hover {
+  background-color: black;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-desktop-menu {
+    display: none;
+  }
+
+  .nav-mobile-menu-icon {
+    display: block;
+  }
+}
+
+/* Dropdown Menu for Desktop */
+.nav-gallery-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: black;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  z-index: 100;
+  max-width: 100%;
+  box-sizing: border-box;
+  color: white;
+}
+
+.nav-dropdown-item {
+  text-decoration: none;
+  color: white;
+  background-color: #000000;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.nav-dropdown-item:hover {
+  background-color: #000000;
+}
+
+.nav-gallery-dropdown:hover .nav-dropdown-menu {
+  right: 0;
+}
+
+.nav-gallery-dropdown:hover .nav-dropdown-menu {
+  transform: translateX(-45%);
+}
+
+.nav-dropdown-menu {
+  max-width: 300px;
+}
+
+.nav-down-arrow {
+  margin-left: 5px;
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+}
+
+.nav-gallery-dropdown:hover .nav-down-arrow {
+  transform: rotate(180deg);
+}
+
+/* Mobile Dropdown Styles */
+.nav-mobile-dropdown-menu {
+  display: none;
+  flex-direction: column;
+}
+
+.nav-mobile-dropdown-item {
+  padding: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-mobile-dropdown-item.nav-active {
+  background-color: #555;
+}
+
+
+
+.nav-gallery-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .nav-mobile-dropdown-menu {
+    display: flex;
+  }
+}

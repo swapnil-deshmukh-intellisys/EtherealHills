@@ -1,0 +1,130 @@
+.hero-section {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 1.2rem;
+  /* color: orangered; */
+  transition: background-image 7s ease-in-out;
+}
+
+.hero-content p {
+  font-size:2rem;
+  font-family: cursive;
+  /* margin-bottom: 0.5rem; */
+  /* text-shadow: 2px 2px black; */
+  color: white;
+}
+
+.hero-content h1 {
+  margin-top: 2rem;
+  font-size: 5rem;
+  /* font-family:  Brush Script MT; */
+  font-family:  cursive;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px black;
+  color: white;
+  font-weight: 1000;
+}
+
+.hero-content h1 span{
+  font-size: 3rem;
+}
+
+/* Dots container */
+.dots-container {
+  display: flex;
+  justify-content: center;
+  margin-top: -20px;
+}
+
+/* Individual dot styles */
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 30%;
+  background-color: gray;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: blue;
+  /* align-items: center; */
+  width: 10px;
+  height: 12px;
+  border-radius: 30%;
+  /* background-color: gray; */
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .hero-section {
+    height: 500px;
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.25rem;
+  }
+
+  .call-now {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 400px;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+
+  .call-now {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 300px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .call-now {
+    font-size: 0.50rem;
+    padding: 5px 10px;
+  }
+
+  .dots-container {
+    margin-top: 8px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+}

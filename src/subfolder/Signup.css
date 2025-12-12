@@ -1,0 +1,474 @@
+/* Signup Container */
+.signup-container {
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 8px; */
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 100%;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../Assets/loginbg.jpg') no-repeat fixed center center/cover;
+  
+  align-items: center;
+
+
+  
+}
+
+.signup-with{
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-image {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #999;
+  /* margin-top: 80px; */
+  border-radius: 50px;
+  /* padding-top: 30px; */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.signup-image img {
+  width: 100%;
+  height: 100vh;
+  border-radius: 50px;
+}
+
+/* Carousel container */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Carousel images */
+.carousel img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Active image */
+.carousel img.active {
+  opacity: 1;
+}
+
+.signup-form {
+  width: 50%;
+  height: 100%;
+  margin-left: 80px;
+  
+
+  /* flex: 1; */
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  /* margin: 20px; */
+}
+
+.form {
+  width: 100%;
+  height: 100%;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+  /* font-family: Brush Script MT; */
+}
+
+.signup-form .form-group {
+  margin-bottom: 15px;
+  width: 100%;
+  line-height: 3em;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: -5px;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
+.google-signup {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.google-signup img {
+  width: 20px;
+  height: 20px;
+}
+
+.google-signup:hover {
+  background-color: #f1f1f1;
+}
+
+.facebook-signup {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.facebook-signup img {
+  width: 20px;
+  height: 20px;
+}
+
+.facebook-signup:hover {
+  background-color: #f1f1f1;
+}
+
+.checkbox {
+  width: auto;
+  padding: 0;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.go-to-login-container{
+  margin: 1em auto;
+  text-align: center;
+}
+.link-to-login-page {
+  margin: auto;
+  text-align: center;
+  color: blue;
+}
+
+.link-to-login-page a {
+  text-decoration: underline;
+  color: #0056b3;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .signup-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .signup-image, .signup-form {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-container {
+    padding: 10px;
+    line-height: 3em;
+  }
+
+  input,
+  .signup-button,
+  .google-signup,
+  .facebook-signup {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .signup-form {
+    padding: 10px;
+  }
+
+  .signup-image img {
+    border-radius: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* Signup Container */
+/* .signup-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('../Assets/loginbg.jpg') no-repeat center center/cover;
+  width: 100%;
+  min-height: 100vh;
+  color: white;
+}
+
+
+.signup-image {
+  flex: 1;
+  max-width: 400px;
+  margin: 20px;
+}
+
+.signup-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel img.active {
+  opacity: 1;
+}
+
+
+.signup-form {
+  flex: 1;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: -5px;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
+
+.google-signup,
+.facebook-signup {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.google-signup:hover,
+.facebook-signup:hover {
+  background-color: #f1f1f1;
+}
+
+.google-signup img,
+.facebook-signup img {
+  width: 20px;
+  height: 20px;
+}
+
+
+.checkbox {
+  width: auto;
+  padding: 0;
+  border: none;
+  margin-bottom: 10px;
+}
+.go-to-login-container{
+  margin: 1em auto;
+  text-align: center;
+}
+.link-to-login-page {
+  margin: auto;
+  text-align: center;
+}
+
+.link-to-login-page a {
+  text-decoration: underline;
+  color: #0056b3;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .signup-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .signup-image, .signup-form {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-container {
+    padding: 10px;
+  }
+
+  input,
+  .signup-button,
+  .google-signup,
+  .facebook-signup {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .signup-form {
+    padding: 10px;
+  }
+
+  .signup-image img {
+    border-radius: 10px;
+  }
+} */
