@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import "./package.css";
 import Gallery from "./gallary";
@@ -51,30 +51,13 @@ const galleries = {
 
 function Package2() {
   const location = useLocation();
-  const { stayType } = location.state || {};
+  const { stayType } = location.state || { stayType: "Tent Stay" };
 
   const gallery = stayType ? galleries[stayType] : [];
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    numberOfGuests: 1,
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add logic to handle form submission, e.g., API call or state update
-    console.log("Form Submitted:", formData);
-  };
 
   return (
-    <div className="package-details">
-      <h1 className="heading">Package Details</h1>
+    <div >
+      {/* <h1 className="heading">Package Details</h1> */}
       {stayType ? (
         <>
           

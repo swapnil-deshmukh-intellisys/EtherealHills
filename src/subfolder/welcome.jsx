@@ -1,33 +1,100 @@
 import React from 'react';
-import './welcome.css'; // Optional: For custom styling
+import { FaCampground, FaMapMarkerAlt, FaRoad, FaStar } from 'react-icons/fa';
+import styles from './welcome.module.css';
 import pawana from '../Assets/AsideImage.webp';
 
 const WelcomePage = () => {
   return (
-    <div className="welcome-page-container">
-      <header className="welcome-page-header">
-        <h1>Welcome to Camp Explorer</h1>
-      </header>
-
-      <div className="welcome-page-content">
-        <div className="img-container">
-        <img src={pawana}
-        
-           // Replace with a camping-related image URL
-          alt="Beautiful campsite"
-          className="welcome-page-image"
-        />
-        </div>
-        <div className="para-container">
-        <p>
-        Today everyone is working day and night to earn money, so everyone is living a stressful life. So if you are looking for different tourist destinations to relieve your stress, then you are on the right website. Because we have specially arranged camping for you at Pawna Lake near Lonavala between Pune and Mumbai. Pawna Lake Camping is 120 km from Mumbai and about 65 km from Pune. You can reach Pawana Camping by your own car. If you do not have a car, you can reach Lonavala by train. From there we can arrange a car for you at an additional cost.
-        </p>
+    <div className={styles["welcome-container"]}>
+      <div className={styles["welcome-header"]}>
+        <div className={styles["header-content"]}>
+          <span className={styles["header-tag"]}>Experience Luxury in Nature</span>
+          <h1 className={styles["welcome-title"]}>
+            Welcome to <span className={styles["title-highlight"]}>Ethereal Hills</span>
+          </h1>
+          <div className={styles["header-divider"]}>
+            <div className={styles["divider-line"]}></div>
+            <div className={styles["divider-icon"]}><FaCampground aria-hidden="true" /></div>
+            <div className={styles["divider-line"]}></div>
+          </div>
         </div>
       </div>
 
-    
+      <div className={styles["welcome-content"]}>
+        <div className={styles["content-left"]}>
+          <div className={styles["image-wrapper"]}>
+            <img 
+              src={pawana}
+              alt="Luxury camping at Pawna Lake"
+              className={styles["welcome-image"]}
+            />
+            <div className={styles["image-overlay"]}>
+              <div className={styles["overlay-content"]}>
+                <span className={styles["overlay-badge"]}>Premium Experience</span>
+                <h3>Pawna Lake Retreat</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles["content-right"]}>
+          <div className={styles["text-content"]}>
+            <p className={styles["lead-paragraph"]}>
+              Escape the noise and reconnect with nature—without giving up comfort.
+              Ethereal Hills brings luxury glamping to Pawna Lake with breathtaking views,
+              curated experiences, and a peaceful atmosphere.
+            </p>
+            <div className={styles["features-grid"]}>
+              <div className={styles["feature-item"]}>
+                <div className={styles["feature-icon"]}>
+                  <FaMapMarkerAlt aria-hidden="true" />
+                </div>
+                <div className={styles["feature-text"]}>
+                  <h4>Strategic Location</h4>
+                  <p>Perfectly situated at Pawna Lake between Mumbai and Pune</p>
+                </div>
+              </div>
+              
+              <div className={styles["feature-item"]}>
+                <div className={styles["feature-icon"]}>
+                  <FaRoad aria-hidden="true" />
+                </div>
+                <div className={styles["feature-text"]}>
+                  <h4>Easy Access</h4>
+                  <p>120km from Mumbai, 65km from Pune, with transportation assistance</p>
+                </div>
+              </div>
+              
+              <div className={styles["feature-item"]}>
+                <div className={styles["feature-icon"]}>
+                  <FaStar aria-hidden="true" />
+                </div>
+                <div className={styles["feature-text"]}>
+                  <h4>Premium Amenities</h4>
+                  <p>Luxury camping with modern comforts in nature's lap</p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles["description"]}>
+              <p>
+                We've crafted an exclusive glamping experience at Pawna Lake near Lonavala. 
+                Our luxury campsites offer the perfect blend of nature's serenity and modern 
+                amenities. Whether you arrive by car or prefer our arranged transportation 
+                from Lonavala station, your journey to tranquility begins here.
+              </p>
+              
+              <div className={styles["cta-section"]}>
+                <button className={styles["discover-btn"]}>
+                  Discover More
+                  <span className={styles["btn-arrow"]}>→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
   );
 };
 

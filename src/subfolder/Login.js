@@ -1,113 +1,203 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Login.css';
-import img1 from '../Assets/camping.jpg';
-import img2 from '../Assets/camping2.jpg';
-import img3 from '../Assets/night.jpg';
-import { getDocs, query, where, collection } from '@firebase/firestore'; // Import Firestore functions
-import { firestore } from '../firebase'; // Ensure Firestore instance is imported
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { FiMail, FiLock, FiArrowRight, FiEye, FiEyeOff } from 'react-icons/fi';
+import styles from './Login.module.css';
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 
 const Login = ({ setIsLoggedIn }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.email) newErrors.email = 'Email is required';
-    if (!formData.password) newErrors.password = 'Password is required';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+    
     return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
+    
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-
+    
+    setIsLoading(true);
+    
     try {
-      // Query Firestore to check if the user exists
-      const usersRef = collection(firestore, 'users');
-      const q = query(usersRef, where('email', '==', formData.email));
-      const querySnapshot = await getDocs(q);
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-      if (!querySnapshot.empty) {
-        const user = querySnapshot.docs[0].data();
-        if (user.password === formData.password) {
-          alert('Login successful!');
-          setIsLoggedIn(true); // Update logged-in state
-          navigate('/homed'); // Redirect to home page
-        } else {
-          alert('Invalid password!');
-        }
-      } else {
-        alert('User not found. Please sign up.');
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data?.message || 'Invalid email or password');
       }
+
+      if (data?.token) {
+        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userEmail', formData.email);
+      }
+
+      setIsLoggedIn(true);
+      navigate('/HomeP', { replace: true });
+      
     } catch (error) {
-      console.error('Error logging in:', error);
-      alert('An error occurred while logging in. Please try again later.');
+      setErrors({ submit: error.message });
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const images = [img1, img2, img3];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [images.length]);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error for this field
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+    if (errors.submit) {
+      setErrors(prev => ({ ...prev, submit: '' }));
+    }
+  };
 
   return (
-    <div className="login-container">
-      <div className="login-image">
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Slide ${index}`}
-            className={index === currentIndex ? 'active' : 'inactive'}
-          />
-        ))}
-      </div>
-      <div className="login-form">
-        <form onSubmit={handleSubmit}>
-          <h2>Log In</h2>
-          <div className="form-group">
-            <label htmlFor="email">Contact / Email</label> <br />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              placeholder="Enter your email"
-            />
-            {errors.email && <span className="error">{errors.email}</span>}
+    <div className={styles.loginPage}>
+      <div className={styles.formSection}>
+        <div className={styles.formContainer}>
+          <div className={styles.formHeader}>
+            <div className={styles.logo}>
+              
+              <div className={styles.logoText}>
+                <h2>Ethereal Hills</h2>
+                <p>Camping & Glamping</p>
+              </div>
+            </div>
+            <h1 className={styles.formTitle}>Welcome Back</h1>
+            <p className={styles.formSubtitle}>Sign in to your account to continue</p>
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label> <br />
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              placeholder="Enter your password"
-            />
-            {errors.password && <span className="error">{errors.password}</span>}
-          </div>
-          <div className="links">
-            <a href="/forgot-password">Forgot password?</a>
-            <a onClick={() => navigate('/create-account')} className="create-account-link">
-              Create account
-            </a>
-          </div>
-          <button type="submit" className="login-button">Log In</button>
-        </form>
+
+          <form onSubmit={handleSubmit} className={styles.loginForm}>
+            {errors.submit && (
+              <div className={styles.errorAlert}>
+                {errors.submit}
+              </div>
+            )}
+
+            <div className={styles.formGroup}>
+              <label className={styles.inputLabel}>
+                <FiMail className={styles.labelIcon} />
+                Email Address
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Enter your email"
+                className={`${styles.formInput} ${errors.email ? styles.error : ''}`}
+                disabled={isLoading}
+              />
+              {errors.email && <span className={styles.errorText}>{errors.email}</span>}
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.inputLabel}>
+                <FiLock className={styles.labelIcon} />
+                Password
+              </label>
+              <div className={styles.passwordWrapper}>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  placeholder="Enter your password"
+                  className={`${styles.formInput} ${errors.password ? styles.error : ''}`}
+                  disabled={isLoading}
+                />
+                <button
+                  type="button"
+                  className={styles.passwordToggle}
+                  onClick={() => setShowPassword(!showPassword)}
+                  disabled={isLoading}
+                >
+                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                </button>
+              </div>
+              {errors.password && <span className={styles.errorText}>{errors.password}</span>}
+            </div>
+
+            <div className={styles.formOptions}>
+              <label className={styles.rememberMe}>
+                <input type="checkbox" disabled={isLoading} />
+                <span>Remember me</span>
+              </label>
+              <Link to="/forgot-password" className={styles.forgotLink}>
+                Forgot password?
+              </Link>
+            </div>
+
+            <button 
+              type="submit" 
+              className={styles.submitButton}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className={styles.spinner}></span>
+                  Signing in...
+                </>
+              ) : (
+                <>
+                  Sign In
+                  <FiArrowRight className={styles.buttonIcon} />
+                </>
+              )}
+            </button>
+
+            <div className={styles.divider}>
+              <span>Don't have an account?</span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => navigate('/create-account')}
+              className={styles.createAccountButton}
+              disabled={isLoading}
+            >
+              Create New Account
+            </button>
+
+            <div className={styles.terms}>
+              By signing in, you agree to our 
+              <Link to="/terms"> Terms of Service</Link> and 
+              <Link to="/privacy"> Privacy Policy</Link>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

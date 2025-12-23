@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-
-import "./facility.css";
+import styles from "./facility.module.css";
 import tentImage from "../Assets/tent.jpg";
 import bonfireImage from "../Assets/bonfire.jpg";
 import foodImage from "../Assets/food.jpg";
@@ -11,13 +10,7 @@ import Games2 from "../Assets/Games2.jpg";
 import Games3 from "../Assets/Games3.jpg";
 import Games4 from "../Assets/Games4.jpg";
 import Games5 from "../Assets/Games5.jpg";
-
 import scheduleMapImage from "../Assets/schedule-map.jpg";
-
-import featuresImage from "../Assets/features.jpg";
-import review1 from "../Assets/review1.jpg";
-import review2 from "../Assets/review2.jpg";
-import review3 from "../Assets/review3.jpg";
 
 const Facility = () => {
   const [counters, setCounters] = useState({
@@ -28,18 +21,15 @@ const Facility = () => {
   });
 
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
-
-  // Array of game images
   const gameImages = [Games1, Games2, Games3, Games4, Games5];
 
-  // Change the current image every 3 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentGameIndex((prevIndex) => (prevIndex + 1) % gameImages.length); // Cycle through the images
+    const gameInterval = setInterval(() => {
+      setCurrentGameIndex((prevIndex) => (prevIndex + 1) % gameImages.length);
     }, 3000);
 
-    return () => clearInterval(interval); // Cleanup interval
-  }, []);
+    return () => clearInterval(gameInterval);
+  }, [gameImages.length]);
 
   useEffect(() => {
     const totalDuration = 2000;
@@ -53,7 +43,7 @@ const Facility = () => {
       followers: 100000 / steps,
     };
 
-    const interval = setInterval(() => {
+    const counterInterval = setInterval(() => {
       setCounters((prev) => ({
         customers: Math.min(prev.customers + incrementValues.customers, 40000),
         reviews: Math.min(prev.reviews + incrementValues.reviews, 400),
@@ -62,172 +52,197 @@ const Facility = () => {
       }));
     }, updateInterval);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(counterInterval);
   }, []);
 
   const facilities = [
     {
       id: 1,
-      title: "Spacious Tents",
-      description: "Comfortable tents with cozy bedding to enjoy a restful night.",
-      image: tentImage,
+      title: "Luxury Tents",
+      description: "Premium tents with comfortable bedding, power outlets, and lake views.",
+      image: tentImage
     },
     {
       id: 2,
-      title: "Bonfire Experience",
-      description:
-        "Relax by the bonfire under the starry sky, perfect for group bonding.",
-      image: bonfireImage,
+      title: "Bonfire Nights",
+      description: "Cozy bonfire setups with seating under the starry sky.",
+      image: bonfireImage
     },
     {
       id: 3,
-      title: "Delicious Meals",
-      description:
-        "Savor delicious meals with a mix of local and traditional flavors.",
-      image: foodImage,
+      title: "Gourmet Dining",
+      description: "Chef-curated meals with local flavors and BBQ specials.",
+      image: foodImage
     },
     {
       id: 4,
-      title: "Live DJ/Musics",
-      description: "Enjoy a DJ Floar and Live music show.",
-      image: Dj,
+      title: "Live Entertainment",
+      description: "Professional DJ setup and live music performances.",
+      image: Dj
     },
     {
       id: 5,
       title: "Swimming Pool",
-      description: "The larger and Speaceful Swimming Pool.",
-      image: Swimming,
+      description: "Spacious swimming pool with lounging area.",
+      image: Swimming
     },
     {
       id: 6,
-      title: "Games",
-      description:
-        "Enjoy all types of games: Cricket, Badminton, Archery, Carrom, Football, Chess.",
-      image: gameImages[currentGameIndex], // Set dynamic image based on current index
+      title: "Activities & Games",
+      description: "Cricket, archery, badminton, carrom, and more.",
+      image: gameImages[currentGameIndex]
     },
   ];
 
+  const testimonials = [
+    {
+      name: "Rajesh Kumar",
+      role: "Adventure Enthusiast",
+      text: "The lakeside camping experience was beyond amazing! The attention to detail and hospitality made our weekend unforgettable.",
+      rating: 5
+    },
+    {
+      name: "Priya Sharma",
+      role: "Family Traveler",
+      text: "Perfect family getaway! Kids loved the games, and we enjoyed the peaceful sunset by the lake. Highly recommended!",
+      rating: 5
+    },
+    {
+      name: "Amit Patel",
+      role: "Corporate Group",
+      text: "Organized our team outing here. The facilities were excellent, and the activities kept everyone engaged. Great team bonding!",
+      rating: 5
+    },
+    {
+      name: "Sneha Reddy",
+      role: "Couple Traveler",
+      text: "Romantic candlelight dinner by the lake was magical. The dome stay was luxurious with stunning views.",
+      rating: 5
+    },
+    {
+      name: "Vikram Singh",
+      role: "Photographer",
+      text: "Photographer's paradise! The lighting during golden hour is perfect for capturing beautiful memories.",
+      rating: 5
+    },
+    {
+      name: "Ananya Desai",
+      role: "Solo Traveler",
+      text: "Felt completely safe and welcome as a solo traveler. Met amazing people and had the best weekend retreat.",
+      rating: 5
+    }
+  ];
+
   return (
-    <div className="facility-page">
-      <section className="facility-section">
-        <h1 className="section-heading">Facilities at Pawana Lake Camping</h1>
-        <div className="facility-grid">
+    <div className={styles["facilities-section"]}>
+      {/* Facilities Section */}
+      <section className={styles["facilities-hero"]}>
+        <div className={styles["facilities-header"]}>
+          <span className={styles["facilities-badge"]}>Premium Amenities</span>
+          <h1 className={styles["facilities-title"]}>World-Class Facilities</h1>
+          <p className={styles["facilities-subtitle"]}>
+            Experience luxury camping with state-of-the-art amenities designed for your comfort
+          </p>
+        </div>
+      </section>
+
+      <section className={styles["facilities-grid-section"]}>
+        <div className={styles["facilities-container"]}>
           {facilities.map((facility) => (
-            <div className="facility-card" key={facility.id}>
-              <img
-                src={facility.image}
-                alt={facility.title}
-                className="facility-image"
-              />
-              <div className="facility-info">
-                <h2 className="facility-title">{facility.title}</h2>
-                <p className="facility-description">{facility.description}</p>
+            <div 
+              key={facility.id} 
+              className={styles["facility-card"]}
+              data-aos="fade-up"
+            >
+              <div className={styles["facility-image-container"]}>
+                <img 
+                  src={facility.image} 
+                  alt={facility.title} 
+                  className={styles["facility-image"]} 
+                />
+                <div className={styles["image-overlay"]}></div>
+              </div>
+              <div className={styles["facility-content"]}>
+                <h3 className={styles["facility-name"]}>{facility.title}</h3>
+                <p className={styles["facility-desc"]}>{facility.description}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
-      
 
-      <section className="schedule-section">
-        <h1 className="section-heading">Our Schedule Map</h1>
-        <img
-          src={scheduleMapImage}
-          alt="Schedule Map"
-          className="schedule-image"
-        />
+      {/* Schedule Section */}
+      <section className={styles["schedule-section"]}>
+        <div className={styles["schedule-header"]}>
+          <h2 className={styles["schedule-title"]}>Daily Schedule</h2>
+          <p className={styles["schedule-subtitle"]}>Perfectly planned activities for an unforgettable experience</p>
+        </div>
+        <div className={styles["schedule-container"]}>
+          <img 
+            src={scheduleMapImage} 
+            alt="Daily Schedule" 
+            className={styles["schedule-image"]} 
+          />
+        </div>
       </section>
 
-      {/* <section className="features-section">
-        <h1 className="section-heading">Exciting Features</h1>
-        <img src={featuresImage} alt="Features" className="features-image" />
-      </section> */}
-
-      <section className="counter-section">
-        <h1 className="section-heading">Our Experience</h1>
-        <div className="counter-container">
-          <div className="counter-card">
-            <h2 className="counter-value">{counters.customers}+</h2>
-            <p className="counter-label">Satisfied Customers</p>
+      {/* Stats Section */}
+      <section className={styles["stats-section"]}>
+        <div className={styles["stats-header"]}>
+          <h2 className={styles["stats-title"]}>Our Journey So Far</h2>
+          <p className={styles["stats-subtitle"]}>Creating memorable experiences since day one</p>
+        </div>
+        <div className={styles["stats-grid"]}>
+          <div className={styles["stat-card"]}>
+            <div className={styles["stat-value"]}>{Math.round(counters.customers)}+</div>
+            <div className={styles["stat-label"]}>Happy Customers</div>
           </div>
-          <div className="counter-card">
-            <h2 className="counter-value">{counters.reviews}+</h2>
-            <p className="counter-label">Google Reviews</p>
+          <div className={styles["stat-card"]}>
+            <div className={styles["stat-value"]}>{Math.round(counters.reviews)}+</div>
+            <div className={styles["stat-label"]}>5-Star Reviews</div>
           </div>
-          <div className="counter-card">
-            <h2 className="counter-value">{counters.years}+</h2>
-            <p className="counter-label">Years of Experience</p>
+          <div className={styles["stat-card"]}>
+            <div className={styles["stat-value"]}>{Math.round(counters.years)}+</div>
+            <div className={styles["stat-label"]}>Years Experience</div>
           </div>
-          <div className="counter-card">
-            <h2 className="counter-value">{counters.followers}+</h2>
-            <p className="counter-label">Followers</p>
+          <div className={styles["stat-card"]}>
+            <div className={styles["stat-value"]}>{Math.round(counters.followers)}+</div>
+            <div className={styles["stat-label"]}>Social Followers</div>
           </div>
         </div>
       </section>
 
-      <section className="reviews-section">
-  <h1 className="section-heading">What Our Guests Say</h1>
-  <div className="reviews-container">
-    <div className="review-box">
-      <h3 className="review-name">Incredible Experience!</h3>
-      <p className="review-text">
-        "Camping at Pawna Lake was a surreal experience! The calm waters,
-        stunning sunsets, and the serenity of the location made it
-        unforgettable. Perfect for a weekend getaway."
-      </p>
-      <div className="review-stars">★★★★★</div>
-    </div>
-    <div className="review-box">
-      <h3 className="review-name">Peaceful and Relaxing</h3>
-      <p className="review-text">
-        "If you're looking to escape the hustle of city life, Pawna Lake is the
-        place to be. The tents were clean, the food was delicious, and the
-        bonfire added a cozy vibe."
-      </p>
-      <div className="review-stars">★★★★★</div>
-    </div>
-    <div className="review-box">
-      <h3 className="review-name">Memorable Night Under the Stars</h3>
-      <p className="review-text">
-        "Sleeping under the open sky and waking up to the lake's view was
-        magical. The staff was friendly, and the entire setup was
-        well-organized. Highly recommend!"
-      </p>
-      <div className="review-stars">★★★★★</div>
-    </div>
-    <div className="review-box">
-      <h3 className="review-name">Great for Groups</h3>
-      <p className="review-text">
-        "Visited with a group of friends, and we had an amazing time! From
-        singing around the bonfire to kayaking in the lake, every moment was
-        fun and adventurous."
-      </p>
-      <div className="review-stars">★★★★★</div>
-    </div>
-    <div className="review-box">
-      <h3 className="review-name">Perfect for Nature Lovers</h3>
-      <p className="review-text">
-        "The location is picturesque, surrounded by lush greenery and mountains.
-        It’s an ideal spot for camping, stargazing, and unwinding in nature’s
-        lap."
-      </p>
-      <div className="review-stars">★★★★★</div>
-    </div>
-    <div className="review-box">
-      <h3 className="review-name">Good for Families</h3>
-      <p className="review-text">
-        "We went with our family, and it was a safe and enjoyable experience.
-        The kids loved the outdoor games, and the food was simple yet tasty.
-        Would love to visit again!"
-      </p>
-      <div className="review-stars">★★★★★</div>
-    </div>
-  </div>
-</section>
+      {/* Testimonials Section */}
+      <section className={styles["testimonials-section"]}>
+        <div className={styles["testimonials-header"]}>
+          <span className={styles["testimonials-badge"]}>Testimonials</span>
+          <h2 className={styles["testimonials-title"]}>Guest Experiences</h2>
+          <p className={styles["testimonials-subtitle"]}>Hear what our guests have to say about their stay</p>
+        </div>
+        <div className={styles["testimonials-grid"]}>
+          {testimonials.map((testimonial, index) => (
+            <div 
+              key={index} 
+              className={styles["testimonial-card"]}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div className={styles["testimonial-rating"]}>
+                {"★".repeat(testimonial.rating)}
+              </div>
+              <p className={styles["testimonial-text"]}>"{testimonial.text}"</p>
+              <div className={styles["testimonial-author"]}>
+                <div className={styles["author-info"]}>
+                  <h4 className={styles["author-name"]}>{testimonial.name}</h4>
+                  <p className={styles["author-role"]}>{testimonial.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-
-      {/* Footer Component */}
-      {/* <Footer /> */}
+      
     </div>
   );
 };

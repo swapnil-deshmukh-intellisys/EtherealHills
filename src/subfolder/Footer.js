@@ -1,130 +1,170 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../Assets/logo.png";
-import facebook from "../Assets/facebook.png";
-import insta from "../Assets/insta.png";
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false); // State to manage dropdown visibility
+  const currentYear = new Date().getFullYear();
 
-  const toggleDropdown = () => {
-    setDropdownOpen((prev) => !prev); // Toggle the dropdown visibility
+  const footerLinks = {
+    quick: [
+      { path: "/HomeP", label: "Home" },
+      { path: "/aboutus", label: "About Us" },
+      { path: "/package", label: "Packages" },
+      { path: "/facility", label: "Facilities" },
+      { path: "/glam", label: "Gallery" },
+      { path: "/contact", label: "Contact Us" },
+      { path: "/policy", label: "Privacy Policy" },
+      { path: "/terms", label: "Terms & Conditions" },
+    ],
+    contact: [
+      {
+        icon: <FaMapMarkerAlt />,
+        text: "Beside Princess Vista, Khadak Gawande, Thakursai, Pawna Lake, Lonavala, Pune - 412108"
+      },
+      {
+        icon: <FaPhone />,
+        text: "+91 77200 08787",
+        link: "tel:+917720008787"
+      },
+      {
+        icon: <FaEnvelope />,
+        text: "contact@etherealhillsglamping.com",
+        link: "mailto:contact@etherealhillsglamping.com"
+      },
+      {
+        icon: <FaEnvelope />,
+        text: "etherealhillsglamping@gmail.com",
+        link: "mailto:etherealhillsglamping@gmail.com"
+      }
+    ],
+    social: [
+      { icon: <FaFacebookF />, link: "https://www.facebook.com/etherealhillsglamping", label: "Facebook" },
+      { icon: <FaInstagram />, link: "https://www.instagram.com/etherealhillsglamping", label: "Instagram" },
+      { icon: <FaTwitter />, link: "#", label: "Twitter" },
+      { icon: <FaYoutube />, link: "#", label: "YouTube" }
+    ]
   };
 
   return (
     <footer className="footer">
-      <div className="footer-container">
-        {/* Logo and Mission */}
-        <div className="footer-section logo-mission">
-          <img src={logo} alt="Logo" className="footer-logo" />
-          <p>
-            Our mission is to inspire people to connect with nature and
-            experience the joys of camping. We aim to provide a comprehensive
-            camping experience by offering a wide range of camping gear and
-            accessories, along with expert advice and resources to help campers
-            plan and prepare for their trips.
-          </p>
-        </div>
-
-        {/* Quick Links */}
-        <div className="footer-section quick-links">
-          <h3>Quick Links</h3>
-          <ul>
-            <li>
-              <NavLink
-                to="HomeP"
-                className={({ isActive }) =>
-                  isActive
-                    ? "desktopmenuListitem active"
-                    : "desktopmenuListitem"
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/aboutus"
-                className={({ isActive }) =>
-                  isActive
-                    ? "desktopmenuListitem active"
-                    : "desktopmenuListitem"
-                }
-              >
-                About Us
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/glamG"
-                className={({ isActive }) =>
-                  isActive ? "dropdown-item active" : "dropdown-item"
-                }
-              >
-                Glam Gallery
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  isActive
-                    ? "desktopmenuListitem active"
-                    : "desktopmenuListitem"
-                }
-              >
-                Contact Us
-              </NavLink>
-            </li>
-            <li>
-            <NavLink
-                to="/policy"
-                className={({ isActive }) =>
-                  isActive
-                    ? "desktopmenuListitem active"
-                    : "desktopmenuListitem"
-                }
-              >
-                Privacy Policy
-              </NavLink>
-            </li>
-            
-          </ul>
-        </div>
-
-        {/* Contact Section */}
-        <div className="footer-section contact">
-          <div className="footer-contacts">
-            <h3>Contact</h3>
-            
-
-            <p>
-              <strong>Address:</strong>Beside Princess Vista, Khadak Gawande, Thakusrsai, Pawanalake, Lonawala Pune-Maharashtra-412108.
-            </p>
-            <p> 
-              <strong>Mobile No:</strong>+91-7720008787
-            </p>
-            <p>
-              <strong>Email:</strong>etherealhillsglamping@gmail.com  contact@etherealhillsglamping.com
+      {/* Main Footer Content */}
+      <div className="footer-main">
+        <div className="footer-container">
+          {/* Brand Section */}
+          <div className="footer-brand">
+            <div className="footer-logo">
+              <img src={logo} alt="Ethereal Hills" className="brand-logo" />
+              <div className="brand-text">
+                <h3 className="brand-name">Ethereal Hills</h3>
+                <p className="brand-tagline">Premium Camping & Glamping</p>
+              </div>
+            </div>
+            <p className="brand-description">
+              We create unforgettable experiences where luxury meets nature. 
+              Our mission is to inspire meaningful connections with the outdoors 
+              through premium camping and glamping adventures.
             </p>
           </div>
-          <div className="social-icons">
-            <a href="https://www.facebook.com/etherealhillsglamping">
-              <img src={facebook} alt="Facebook" />
-            </a>
-            <a href="https://www.instagram.com/etherealhillsglamping/profilecard/?igsh=MWJrMzRzNThpbnRobw==">
-              <img src={insta} alt="Instagram" />
-            </a>
+
+          {/* Quick Links */}
+          <div className="footer-section">
+            <h4 className="footer-title">Quick Links</h4>
+            <ul className="footer-links">
+              {footerLinks.quick.map((link, index) => (
+                <li key={index}>
+                  <NavLink
+                    to={link.path}
+                    className={({ isActive }) =>
+                      `footer-link ${isActive ? 'footer-link-active' : ''}`
+                    }
+                  >
+                    {link.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div className="footer-section">
+            <h4 className="footer-title">Contact Information</h4>
+            <ul className="contact-info">
+              {footerLinks.contact.map((item, index) => (
+                <li key={index} className="contact-item">
+                  <span className="contact-icon">{item.icon}</span>
+                  {item.link ? (
+                    <a href={item.link} className="contact-link">
+                      {item.text}
+                    </a>
+                  ) : (
+                    <span className="contact-text">{item.text}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div className="footer-section">
+            <h4 className="footer-title">Stay Updated</h4>
+            <p className="newsletter-text">
+              Subscribe to our newsletter for exclusive offers and updates.
+            </p>
+            <form className="newsletter-form">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="newsletter-input"
+                required
+              />
+              <button type="submit" className="newsletter-btn">
+                Subscribe
+              </button>
+            </form>
             
+            <div className="social-section">
+              <h5 className="social-title">Follow Us</h5>
+              <div className="social-icons">
+                {footerLinks.social.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon"
+                    aria-label={social.label}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
-      
 
+      {/* Footer Bottom */}
       <div className="footer-bottom">
-        Copyright © 2024. All Rights Reserved.
+        <div className="footer-bottom-container">
+          <p className="copyright">
+            © {currentYear} Ethereal Hills Camping & Glamping. All rights reserved.
+          </p>
+          <div className="footer-legal">
+            <NavLink to="/policy" className="legal-link">
+              Privacy Policy
+            </NavLink>
+            <span className="legal-separator">•</span>
+            <NavLink to="/terms" className="legal-link">
+              Terms & Conditions
+            </NavLink>
+            <span className="legal-separator">•</span>
+            <span className="legal-text">
+              Designed with ❤️ for nature lovers
+            </span>
+          </div>
+        </div>
       </div>
     </footer>
   );

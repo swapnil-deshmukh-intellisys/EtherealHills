@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { firestore } from "../firebase"; // Import Firestore instance
-import { collection, addDoc } from "firebase/firestore"; // Import Firestore functions
 import "./book.css";
 import tentLogo from "../Assets/tent.png";
 import domeLogo from "../Assets/tent.png";
-import tentShow from "../Assets/tent-show.png";
 import qrCodeImage from "../Assets/QR2.jpg";
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 
 function Book({ stayType }) {
   const [email, setEmail] = useState("");
@@ -15,7 +14,6 @@ function Book({ stayType }) {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [errors, setErrors] = useState({});
-  const [selectedSeats, setSelectedSeats] = useState([]);
   const [selectedTents, setSelectedTents] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [numberOfMales, setNumberOfMales] = useState("");
@@ -62,9 +60,18 @@ function Book({ stayType }) {
       };
 
       try {
-        // Save data to Firestore
-        const docRef = await addDoc(collection(firestore, "bookings"), formData);
-        console.log("Booking added with ID:", docRef.id);
+        const res = await fetch(`${API_BASE_URL}/bookings`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...formData, stayType }),
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data?.ok) {
+          throw new Error(data?.message || 'Failed to submit booking');
+        }
 
         // Show success alert and popup
         alert("Please make payment on next page!");
@@ -79,7 +86,6 @@ function Book({ stayType }) {
         setNumberOfFemales("");
         setCheckIn("");
         setCheckOut("");
-        setSelectedSeats([]);
         setSelectedTents([]);
       } catch (error) {
         console.error("Error adding booking to Firestore:", error);
@@ -88,19 +94,12 @@ function Book({ stayType }) {
     }
   };
 
-  const handleSeatSelect = (seatNumber) => {
-    setSelectedSeats((prevSeats) =>
-      prevSeats.includes(seatNumber)
-        ? prevSeats.filter((seat) => seat !== seatNumber)
-        : [...prevSeats, seatNumber]
-    );
-  };
-
   const getLogo = () => {
     if (stayType === "Tent Glam") return tentLogo;
     if (stayType === "Dome") return domeLogo;
     return tentLogo;
   };
+
   return (
     <div className="book-container">
       <div className="form-container">

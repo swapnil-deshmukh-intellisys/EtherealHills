@@ -1,48 +1,13 @@
 .packages-section {
-  padding: 8rem 2rem;
+  padding: 5rem 2rem;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   position: relative;
-}
-
-.package-details {
-  min-height: 100vh;
-  padding: 3.5rem 1.25rem;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  color: #0f172a;
-}
-
-.package-details .heading {
-  max-width: 1100px;
-  margin: 0 auto 1.5rem;
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #0f172a;
-  letter-spacing: 0.2px;
-  text-align: center;
-}
-
-.package-details .error-message {
-  max-width: 700px;
-  margin: 1rem auto;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(239, 68, 68, 0.12);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  color: #7f1d1d;
-  text-align: center;
-}
-
-.gallery-container {
-  max-width: 1200px;
-  margin: 1.75rem auto 0;
-  padding: 0;
 }
 
 .packages-header {
   text-align: center;
   max-width: 800px;
-  margin: 0 auto 6rem;
+  margin: 0 auto 3.5rem;
 }
 
 .section-badge {
@@ -54,7 +19,7 @@
   font-weight: 600;
   letter-spacing: 1px;
   border-radius: 25px;
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
   text-transform: uppercase;
 }
 
@@ -75,7 +40,7 @@
 .packages-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 3rem;
+  gap: 1.75rem;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -138,7 +103,7 @@
 }
 
 .card-content {
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .card-header {
@@ -313,26 +278,22 @@
 }
 
 .modal-body {
-  padding: 3rem 2rem;
+  padding: 2rem 1.5rem;
 }
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .packages-section {
-    padding: 6rem 1.5rem;
+    padding: 4.5rem 1.5rem;
   }
-
-  .package-details {
-    padding: 3rem 1.25rem;
-  }
-
+  
   .section-title {
     font-size: 3rem;
   }
-
+  
   .packages-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }
 
@@ -340,20 +301,16 @@
   .section-title {
     font-size: 2.5rem;
   }
-
-  .package-details .heading {
-    font-size: 2.1rem;
-  }
-
+  
   .packages-grid {
     grid-template-columns: 1fr;
     max-width: 500px;
   }
-
+  
   .card-actions {
     flex-direction: column;
   }
-
+  
   .features-btn {
     width: 100%;
   }
@@ -361,21 +318,13 @@
 
 @media (max-width: 480px) {
   .packages-section {
-    padding: 4rem 1rem;
+    padding: 3.5rem 1rem;
   }
-
-  .package-details {
-    padding: 2.5rem 1rem;
-  }
-
-  .package-details .heading {
-    font-size: 1.8rem;
-  }
-
+  
   .section-title {
     font-size: 2rem;
   }
-
+  
   .card-content {
     padding: 1.5rem;
   }

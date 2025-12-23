@@ -1,191 +1,152 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../Assets/logo.png";
 import "../subfolder/Nav.css";
+import { FiMenu, FiX } from "react-icons/fi";
 
-export default function Nav() {
+export default function Nav({ isLoggedIn, onLogout }) {
   const [showMenu, setShowMenu] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setShowMenu((prev) => !prev);
   };
 
-  const toggleDropdown = () => {
-    setDropdownOpen((prev) => !prev);
-  };
-
   const handleLinkClick = () => {
     setShowMenu(false);
-    setDropdownOpen(false);
   };
 
-  return (
-    <nav className="nav-navbar">
-      <img src={logo} alt="Logo" id="nav-logo" />
+  const handleLogout = () => {
+    handleLinkClick();
+    if (typeof onLogout === "function") {
+      onLogout();
+    }
+    navigate("/HomeP");
+  };
 
-      <div className="nav-main-nav">
-        <div className="nav-desktop-book-now">
-          <button className="nav-book-now-btn">
-            <NavLink to="/login" className="nav-book-now-link">
-              Book Now
-            </NavLink>
-          </button>
+  const navLinks = [
+    { path: "/HomeP", label: "Home" },
+    { path: "/aboutus", label: "About Us" },
+    { path: "/glam", label: "Gallery" },
+    { path: "/contact", label: "Contact" },
+  ];
+
+  return (
+    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
+      <div className="navbar-container">
+        {/* Logo */}
+        <div className="navbar-logo" onClick={() => navigate("/HomeP")}>
+          <img src={logo} alt="Ethereal Hills" className="logo-image" />
+          <div className="logo-text">
+            <span className="logo-main">Ethereal Hills</span>
+            <span className="logo-sub">Camping & Glamping</span>
+          </div>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="nav-desktop-menu">
-          <NavLink
-            to="/HomeP"
-            className={({ isActive }) =>
-              isActive ? "nav-desktop-menu-list-item nav-active" : "nav-desktop-menu-list-item"
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive ? "nav-desktop-menu-list-item nav-active" : "nav-desktop-menu-list-item"
-            }
-          >
-            Contact Us
-          </NavLink>
-          <NavLink
-            to="/aboutus"
-            className={({ isActive }) =>
-              isActive ? "nav-desktop-menu-list-item nav-active" : "nav-desktop-menu-list-item"
-            }
-          >
-            About Us
-          </NavLink>
+        {/* Desktop Navigation */}
+        <div className="navbar-desktop">
+          <div className="nav-links">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? 'nav-link-active' : ''}`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
 
-          {/* Gallery Link with Dropdown */}
-          <div
-            className="nav-gallery-dropdown"
-            onMouseEnter={toggleDropdown}
-            onMouseLeave={toggleDropdown}
-          >
-            <NavLink
-              to="/glam"
-              className={({ isActive }) =>
-                isActive ? "nav-desktop-menu-list-item nav-active" : "nav-desktop-menu-list-item"
-              }
-            >
-              Gallery
-              <span className="nav-down-arrow">▼</span>
-            </NavLink>
-
-            {/* Dropdown Menu */}
-            {dropdownOpen && (
-              <div className="nav-dropdown-menu">
-                <NavLink
-                  to="/glam"
-                  className={({ isActive }) =>
-                    isActive ? "nav-dropdown-item nav-active" : "nav-dropdown-item"
-                  }
-                  onClick={handleLinkClick}
+          <div className="nav-actions">
+            {!isLoggedIn ? (
+              <>
+                <button
+                  className="nav-btn secondary"
+                  onClick={() => navigate("/login")}
                 >
-                  Tent Gallery
-                </NavLink>
-                <NavLink
-                  to="/glamG"
-                  className={({ isActive }) =>
-                    isActive ? "nav-dropdown-item nav-active" : "nav-dropdown-item"
-                  }
-                  onClick={handleLinkClick}
+                  Login
+                </button>
+              </>
+            ) : (
+              <div className="user-menu">
+                <button
+                  className="nav-btn secondary"
+                  onClick={handleLogout}
                 >
-                  Glam Gallery
-                </NavLink>
+                  Logout
+                </button>
               </div>
             )}
           </div>
         </div>
-      </div>
 
-      {/* Mobile Menu Toggle */}
-      <div className="nav-mobile-menu-icon" onClick={toggleMenu}>
-        ☰
+        {/* Mobile Menu Toggle */}
+        <button className="mobile-toggle" onClick={toggleMenu}>
+          {showMenu ? <FiX size={24} /> : <FiMenu size={24} />}
+        </button>
       </div>
 
       {/* Mobile Menu */}
-      {showMenu && (
-        <div className="nav-mobile-menu">
-          <NavLink
-            to="/HomeP"
-            className={({ isActive }) =>
-              isActive ? "nav-mobile-menu-list-item nav-active" : "nav-mobile-menu-list-item"
-            }
-            onClick={handleLinkClick}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive ? "nav-mobile-menu-list-item nav-active" : "nav-mobile-menu-list-item"
-            }
-            onClick={handleLinkClick}
-          >
-            Contact Us
-          </NavLink>
-          <NavLink
-            to="/create-account"
-            className={({ isActive }) =>
-              isActive ? "nav-mobile-menu-list-item nav-active" : "nav-mobile-menu-list-item"
-            }
-            onClick={handleLinkClick}
-          >
-            Sign Up
-          </NavLink>
-          <NavLink
-            to="/aboutus"
-            className={({ isActive }) =>
-              isActive ? "nav-mobile-menu-list-item nav-active" : "nav-mobile-menu-list-item"
-            }
-            onClick={handleLinkClick}
-          >
-            About
-          </NavLink>
-
-          {/* Mobile Dropdown */}
-          <div className="nav-gallery-dropdown" onClick={toggleDropdown}>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "nav-desktop-menu-list-item" : "nav-desktop-menu-list-item"
-              }
-            >
-              Gallery
-              <span className="nav-down-arrow nav-active" >▼</span>
-            </NavLink>
-
-            {/* Mobile Dropdown Menu */}
-            {dropdownOpen && (
-              <div className="nav-mobile-dropdown-menu">
-                <NavLink
-                  to="/glam"
-                  className={({ isActive }) =>
-                    isActive ? "nav-mobile-dropdown-item nav-active" : "nav-dropdown-item"
-                  }
-                  onClick={handleLinkClick}
-                >
-                  Tent Gallery
-                </NavLink>
-                <NavLink
-                  to="/glamG"
-                  className={({ isActive }) =>
-                    isActive ? "nav-mobile-dropdown-item nav-active" : "nav-dropdown-item"
-                  }
-                  onClick={handleLinkClick}
-                >
-                  Glam Gallery
-                </NavLink>
-              </div>
-            )}
+      <div className={`mobile-menu ${showMenu ? 'mobile-menu-open' : ''}`}>
+        <div className="mobile-menu-header">
+          <div className="navbar-logo" onClick={() => { navigate("/HomeP"); handleLinkClick(); }}>
+            <img src={logo} alt="Ethereal Hills" className="logo-image" />
+            <div className="logo-text">
+              <span className="logo-main">Ethereal Hills</span>
+              <span className="logo-sub">Camping & Glamping</span>
+            </div>
           </div>
         </div>
-      )}
+
+        <div className="mobile-links">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) =>
+                `mobile-link ${isActive ? 'mobile-link-active' : ''}`
+              }
+              onClick={handleLinkClick}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
+
+        <div className="mobile-actions">
+          {!isLoggedIn ? (
+            <>
+              <button
+                className="mobile-btn secondary"
+                onClick={() => { navigate("/login"); handleLinkClick(); }}
+              >
+                Login
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="mobile-btn secondary"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          )}
+        </div>
+      </div>
     </nav>
   );
 }

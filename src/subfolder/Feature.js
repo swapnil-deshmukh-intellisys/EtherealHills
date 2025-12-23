@@ -2,7 +2,6 @@ import React from "react";
 import "./Feature.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCampground,
   faDrumstickBite,
   faCoffee,
   faSwimmingPool,
@@ -11,7 +10,6 @@ import {
   faBed,
   faPeace,
   faDoorOpen,
-  faBath,
   faChair,
   faGamepad,
   faCompactDisc,

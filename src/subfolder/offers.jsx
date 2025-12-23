@@ -1,5 +1,5 @@
 import React from "react";
-import "./offers.css";
+import styles from "./offers.module.css";
 import campimg from "../Assets/camp.jpg";
 import peaceimg from "../Assets/Dj.jpg";
 import viewImg from "../Assets/view.jpg";
@@ -8,56 +8,80 @@ import toiletimg from "../Assets/toilet.jpg";
 import aroundPuneImg from "../Assets/dome (4).jpg";
 
 const Offers = () => {
+  const features = [
+    {
+      image: campimg,
+      title: "Lakeside Location",
+      description: "Premium waterfront camping with panoramic lake views"
+    },
+    {
+      image: peaceimg,
+      title: "Live DJ & Music",
+      description: "Curated music experience under the stars"
+    },
+    {
+      image: viewImg,
+      title: "Lake Access",
+      description: "Direct access to pristine Pawna Lake waters"
+    },
+    {
+      image: bbqimg,
+      title: "Gourmet BBQ",
+      description: "Premium barbecue with chef-curated menu"
+    },
+    {
+      image: toiletimg,
+      title: "Luxury Facilities",
+      description: "Modern amenities with western conveniences"
+    },
+    {
+      image: aroundPuneImg,
+      title: "Prime Location",
+      description: "Just 50km from Pune, accessible yet secluded"
+    }
+  ];
+
   return (
-    <div className="app">
-      <div className="hero">
-        <div className="feature-container">
-          <div className="feature">
-            <img
-              src={campimg}
-              alt="Lakeside Location"
-              className="feature-img"
-            />
-            <p>Lakeside Location</p>
-          </div>
-          <div className="feature">
-            <img
-              src={peaceimg}
-              alt="Peaceful Campsite"
-              className="feature-img"
-            />
-            <p>Live Dj/Music</p>
-          </div>
-          <div className="feature">
-            <img
-              src={viewImg}
-              alt="Very Close to Lake"
-              className="feature-img"
-            />
-            <p>Very Close to Lake</p>
-          </div>
-          <div className="feature">
-            <img src={bbqimg} alt="BBQ Included" className="feature-img" />
-            <p>BBQ Included</p>
-          </div>
-          <div className="feature">
-            <img
-              src={toiletimg}
-              alt="Western Toilets Available"
-              className="feature-img"
-            />
-            <p>Western Toilets Available</p>
-          </div>
-          <div className="feature">
-            <img
-              src={aroundPuneImg}
-              alt="Around 50km From Pune"
-              className="feature-img"
-            />
-            <p>Around 50km From Pune</p>
-          </div>
-        </div>
+    <div className={styles["offers-section"]}>
+      <div className={styles["offers-header"]}>
+        <div className={styles["section-label"]}>Premium Features</div>
+        <h2 className={styles["section-title"]}>Experience Excellence</h2>
+        <p className={styles["section-subtitle"]}>
+          Every detail crafted for your perfect getaway
+        </p>
       </div>
+
+      <div className={styles["offers-grid"]}>
+        {features.map((feature, index) => (
+          <div 
+            key={index} 
+            className={styles["offer-card"]}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div className={styles["image-container"]}>
+              <img 
+                src={feature.image} 
+                alt={feature.title}
+                className={styles["offer-image"]}
+              />
+              <div className={styles["image-gradient"]}></div>
+            </div>
+            
+            <div className={styles["card-content"]}>
+              <h3 className={styles["card-title"]}>{feature.title}</h3>
+              <p className={styles["card-description"]}>{feature.description}</p>
+            </div>
+            
+            <div className={styles["card-hover"]}>
+              <span className={styles["hover-text"]}>Learn More</span>
+              <span className={styles["hover-arrow"]}>→</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      
     </div>
   );
 };

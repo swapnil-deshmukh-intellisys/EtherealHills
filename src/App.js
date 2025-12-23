@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./subfolder/Login";
 import Nav from "./subfolder/Nav";
-import Navbar from "./subfolder/navbar";
 import ContactUs from "./subfolder/Contactus";
 import Signup from "./subfolder/Signup";
 import AboutUs from "./subfolder/About";
 import HomeP from "./subfolder/HomeP";
 import Footer from "./subfolder/Footer";
-import Homed from "./subfolder/Homed";
 // import Popup from './subfolder/Popup';
 import Package2 from "./subfolder/package2"; // Import Package2
 import TentGal from "./subfolder/glam";
-import GlamGal from "./subfolder/glamG";
 import Scroll from "./subfolder/ScrollToTop";
 import Policy from "./subfolder/policy";
 import Package from "./subfolder/package";
@@ -21,47 +18,57 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const navbarHeight = document.querySelector(".nav-navbar").offsetHeight;
-    document.body.style.paddingTop = `${navbarHeight}px`;
+    const token = localStorage.getItem("authToken");
+    setIsLoggedIn(Boolean(token));
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    setIsLoggedIn(false);
+  };
+
+  useEffect(() => {
+    const applyNavbarOffset = () => {
+      const navbarEl = document.querySelector(".navbar");
+      const navbarHeight = navbarEl ? navbarEl.offsetHeight : 0;
+      document.body.style.paddingTop = `${navbarHeight}px`;
+      document.documentElement.style.setProperty("--navbar-height", `${navbarHeight}px`);
+    };
+
+    applyNavbarOffset();
+    window.addEventListener("resize", applyNavbarOffset);
+    return () => window.removeEventListener("resize", applyNavbarOffset);
   }, []);
 
   return (
     <Router>
       <Scroll />
-      {/* Conditionally render Nav or Navbar */}
-      {isLoggedIn ? <Navbar /> : <Nav />}
+      <Nav isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 
       <Routes>
-        {!isLoggedIn ? (
-          <>
-            <Route path="/" element={<HomeP />} /> {/* Public Home */}
-            
-            {/* Additional route for HomeP */}
-            <Route path="/HomeP" element={<HomeP />} />
-            <Route
-              path="/login"
-              element={<Login setIsLoggedIn={setIsLoggedIn} />}
-            />{" "}
-            {/* Login Page */}
-            <Route path="/aboutus" element={<AboutUs />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/create-account" element={<Signup />} />
-            <Route path="/glam" element={<TentGal />} />
-            <Route path="/glamG" element={<GlamGal />} />
-          </>
-        ) : (
-          <>
-            <Route path="/homed" element={<Homed />} /> {/* Private Home */}
-            <Route path="/package" element={<Package />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/aboutus" element={<AboutUs />} />
-            <Route path="/glam" element={<TentGal />} />
-            <Route path="/glamG" element={<GlamGal />} />
-          </>
-        )}
+        <Route path="/" element={<HomeP isLoggedIn={isLoggedIn} />} />
+        <Route path="/HomeP" element={<HomeP isLoggedIn={isLoggedIn} />} />
+        <Route path="/homed" element={<HomeP isLoggedIn={isLoggedIn} />} />
+
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route path="/create-account" element={<Signup />} />
+
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/glam" element={<TentGal />} />
+
+        <Route
+          path="/package"
+          element={isLoggedIn ? <Package /> : <Login setIsLoggedIn={setIsLoggedIn} />}
+        />
+
         <Route path="/package-details" element={<Package2 />} />{" "}
         <Route path="/policy" element={<Policy />} />
         {/* Add route for Package2 */}
+        <Route path="*" element={<HomeP isLoggedIn={isLoggedIn} />} />
       </Routes>
       <Footer />
     </Router>

@@ -51,7 +51,7 @@ function Gallery() {
         <div className="tent-grid">
           {glamGalleryItems.map((item, index) => (
             <div key={index} className={`tent-gallery-img ${item.className}`}>
-              <img src={item.image} alt={`Glam Stay Image ${index + 1}`} />
+              <img src={item.image} alt={`Glam Stay ${index + 1}`} />
             </div>
           ))}
         </div>
@@ -60,7 +60,7 @@ function Gallery() {
         <div className="tent-gallery-container">
           {tentGalleryItems.map((item, index) => (
             <div key={index} id={`tent-image-${index + 1}`} className={`tent-image-card ${item.className}`}>
-              <img src={item.image} alt={`Tent Stay Image ${index + 1}`} />
+              <img src={item.image} alt={`Tent Stay ${index + 1}`} />
             </div>
           ))}
         </div>

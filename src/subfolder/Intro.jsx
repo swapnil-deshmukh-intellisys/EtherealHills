@@ -1,48 +1,78 @@
 import React, { useState, useEffect } from "react";
-import pawana1 from "../Assets/pawana1.jpg"; // Replace with your actual image paths
+import { useNavigate } from "react-router-dom";
+import pawana1 from "../Assets/pawana1.jpg";
 import pawana2 from "../Assets/pawana2.jpg";
 import pawana3 from "../Assets/pawana3.jpg";
-import "../subfolder/Intro.css";
+import styles from "../subfolder/Intro.module.css";
 
 export default function Intro() {
+  const navigate = useNavigate();
   const images = [pawana1, pawana2, pawana3];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-slide functionality
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
+    }, 4000);
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // Function to handle dot clicks
   const handleDotClick = (index) => {
     setCurrentIndex(index);
   };
 
+  const goToPrev = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
   return (
-    <div>
-      <div
-        className="hero-section"
-        style={{ backgroundImage: `url(${images[currentIndex]})` }}
+    <div className={styles["intro-container"]}>
+      <div 
+        className={styles["hero-section"]} 
+        style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${images[currentIndex]})` }}
       >
-        <div className="hero-content">
-          <p>Welcome To</p>
-          <h1>
-            Ethereal Hills<br /> <span>Camping & Glamping</span>
+        <button className={`${styles["nav-btn"]} ${styles["prev-btn"]}`} onClick={goToPrev}>
+          <span className={styles.chevron}>‹</span>
+        </button>
+        
+        <div className={styles["hero-content"]}>
+          <div className={styles["hero-subtitle"]}>
+            <span className={styles["accent-line"]}></span>
+            <p className={styles["welcome-text"]}>Welcome To</p>
+          </div>
+          <h1 className={styles["hero-title"]}>
+            <span className={styles["title-line"]}>Ethereal Hills</span>
+            <span className={styles["title-subline"]}>Camping & Glamping</span>
           </h1>
-          {/* <button className="call-now">Book Now</button> */}
+          <button
+            className={styles["cta-button"]}
+            onClick={() => navigate("/package-details", { state: { stayType: "Tent Stay" } })}
+          >
+            <span>Book Now</span>
+            <span className={styles.arrow}>→</span>
+          </button>
         </div>
+
+        <button className={`${styles["nav-btn"]} ${styles["next-btn"]}`} onClick={goToNext}>
+          <span className={styles.chevron}>›</span>
+        </button>
       </div>
-      {/* Dots for navigation */}
-      <div className="dots-container">
+
+      <div className={styles["indicators-container"]}>
         {images.map((_, index) => (
           <div
             key={index}
-            className={`dot ${index === currentIndex ? "active" : ""}`}
+            className={`${styles.indicator} ${index === currentIndex ? styles.active : ""}`}
             onClick={() => handleDotClick(index)}
-          ></div>
+          >
+            <div className={styles["indicator-progress"]}></div>
+          </div>
         ))}
       </div>
     </div>

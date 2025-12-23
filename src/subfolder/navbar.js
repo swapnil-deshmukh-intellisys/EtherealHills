@@ -18,7 +18,7 @@ export default function Nav() {
       {/* Desktop Menu */}
       <div className="desktopmenu">
         <button className="book-now-btn">
-          <Link to="/package" className="book-now-link">
+          <Link to="/package-details" state={{ stayType: "Tent Stay" }} className="book-now-link">
             Book Now
           </Link>
         </button>
