@@ -26,7 +26,7 @@ const Package = () => {
     {
       id: 1,
       title: "Tent Stay",
-      price: "Starting From ₹1199",
+      price: "Starting From ₹1499",
       description: "Authentic camping experience with modern comforts",
       image: img2,
       available: true,

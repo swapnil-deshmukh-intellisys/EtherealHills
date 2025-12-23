@@ -100,16 +100,6 @@ export default function Nav({ isLoggedIn, onLogout }) {
 
       {/* Mobile Menu */}
       <div className={`mobile-menu ${showMenu ? 'mobile-menu-open' : ''}`}>
-        <div className="mobile-menu-header">
-          <div className="navbar-logo" onClick={() => { navigate("/HomeP"); handleLinkClick(); }}>
-            <img src={logo} alt="Ethereal Hills" className="logo-image" />
-            <div className="logo-text">
-              <span className="logo-main">Ethereal Hills</span>
-              <span className="logo-sub">Camping & Glamping</span>
-            </div>
-          </div>
-        </div>
-
         <div className="mobile-links">
           {navLinks.map((link) => (
             <NavLink

@@ -221,7 +221,10 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 500px;
+    height: 70vh;
+    min-height: unset;
+    background-size: 100% 100%;
+    background-position: center;
   }
   
   .title-line {
@@ -254,7 +257,10 @@
 
 @media (max-width: 480px) {
   .hero-section {
-    min-height: 400px;
+    height: 70vh;
+    min-height: unset;
+    background-size: 100% 100%;
+    background-position: center;
   }
   
   .title-line {

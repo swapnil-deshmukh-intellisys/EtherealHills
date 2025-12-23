@@ -177,13 +177,11 @@ const Facility = () => {
           <h2 className={styles["schedule-title"]}>Daily Schedule</h2>
           <p className={styles["schedule-subtitle"]}>Perfectly planned activities for an unforgettable experience</p>
         </div>
-        <div className={styles["schedule-container"]}>
-          <img 
-            src={scheduleMapImage} 
-            alt="Daily Schedule" 
-            className={styles["schedule-image"]} 
-          />
-        </div>
+        <img 
+          src={scheduleMapImage} 
+          alt="Daily Schedule" 
+          className={styles["schedule-image"]} 
+        />
       </section>
 
       {/* Stats Section */}
