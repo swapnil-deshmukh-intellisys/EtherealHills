@@ -53,7 +53,7 @@ function Package2() {
   const location = useLocation();
   const { stayType } = location.state || { stayType: "Tent Stay" };
 
-  const gallery = stayType ? galleries[stayType] : [];
+  const gallery = stayType ? (galleries[stayType] || []) : [];
 
   return (
     <div >

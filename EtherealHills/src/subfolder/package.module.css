@@ -39,10 +39,11 @@
 
 .packages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(2, minmax(280px, 420px));
   gap: 1.75rem;
-  max-width: 1400px;
+  max-width: 1000px;
   margin: 0 auto;
+  justify-content: center;
 }
 
 .package-card {

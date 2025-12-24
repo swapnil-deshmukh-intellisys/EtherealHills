@@ -83,6 +83,7 @@
   padding: 2.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
 }
 
 .formCard * {
@@ -464,7 +465,23 @@
   }
   
   .formCard {
+    max-width: 360px;
     padding: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .signupPage {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .signupHeader {
+    margin-bottom: 1.5rem;
+  }
+
+  .formCard {
+    padding: 1.5rem;
+    border-radius: 18px;
   }
 }
 

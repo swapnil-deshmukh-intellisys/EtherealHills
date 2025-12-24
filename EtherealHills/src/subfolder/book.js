@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./book.css";
 import tentLogo from "../Assets/tent.png";
 import domeLogo from "../Assets/tent.png";
-import qrCodeImage from "../Assets/QR2.jpg";
 import { FiCalendar, FiUser, FiMail, FiPhone, FiCheckCircle } from "react-icons/fi";
 import { FaMale, FaFemale } from "react-icons/fa";
 
@@ -63,8 +62,9 @@ function Book({ stayType }) {
   
   const [errors, setErrors] = useState({});
   const [selectedTents, setSelectedTents] = useState([]);
-  const [showPopup, setShowPopup] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState(null);
+  const [paymentMessage, setPaymentMessage] = useState("");
 
   const numberOfMales = Number.parseInt(formData.numberOfMales, 10) || 0;
   const numberOfFemales = Number.parseInt(formData.numberOfFemales, 10) || 0;
@@ -163,6 +163,8 @@ function Book({ stayType }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setPaymentStatus(null);
+    setPaymentMessage("");
     
     if (!validateForm()) {
       return;
@@ -216,6 +218,9 @@ function Book({ stayType }) {
         throw new Error(orderData?.message || "Failed to create payment order");
       }
 
+      setPaymentStatus("pending");
+      setPaymentMessage("Payment is pending. Please complete the payment in Razorpay.");
+
       const options = {
         key: orderData.keyId,
         amount: orderData.order.amount,
@@ -238,6 +243,8 @@ function Book({ stayType }) {
         },
         handler: async function (response) {
           try {
+            setPaymentStatus("verifying");
+            setPaymentMessage("Verifying payment...");
             const verifyRes = await fetch(`${API_BASE_URL}/payments/verify`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -254,37 +261,43 @@ function Book({ stayType }) {
               throw new Error(verifyData?.message || "Payment verification failed");
             }
 
-            alert("Payment successful!");
+            setPaymentStatus("success");
+            setPaymentMessage("Payment successful! Your booking is confirmed.");
+
+            setFormData({
+              firstName: "",
+              lastName: "",
+              email: "",
+              phone: "",
+              numberOfMales: "",
+              numberOfFemales: "",
+              checkIn: "",
+              checkOut: "",
+            });
+            setSelectedTents([]);
           } catch (err) {
             console.error("Payment verify error:", err);
-            alert("Payment done but verification failed. Please contact support.");
+            setPaymentStatus("failed");
+            setPaymentMessage(err?.message || "Payment done but verification failed. Please contact support.");
           }
         },
         modal: {
           ondismiss: function () {
-            setShowPopup(true);
+            setPaymentStatus("cancelled");
+            setPaymentMessage("Payment was cancelled. You can try again.");
           },
         },
       };
 
       const rzp = new window.Razorpay(options);
       rzp.open();
-      
-      // Clear form data
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        numberOfMales: "",
-        numberOfFemales: "",
-        checkIn: "",
-        checkOut: "",
-      });
-      setSelectedTents([]);
+      setIsSubmitting(false);
+      return;
       
     } catch (error) {
       console.error("Error adding booking:", error);
+      setPaymentStatus("failed");
+      setPaymentMessage(error?.message || "Failed to submit booking. Please try again.");
       alert(error?.message || "Failed to submit booking. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -318,6 +331,12 @@ function Book({ stayType }) {
               <img src={getLogo()} alt={stayType} className="stay-logo" />
               <h2>{stayType} Booking</h2>
             </div>
+
+            {paymentStatus && (
+              <div className={`payment-status ${paymentStatus}`}>
+                {paymentMessage}
+              </div>
+            )}
 
             <form onSubmit={handleSubmit}>
               <div className="form-row">
@@ -566,86 +585,6 @@ function Book({ stayType }) {
 
       </div>
 
-      {/* Payment Popup */}
-      {showPopup && (
-        <div className="payment-popup">
-          <div className="popup-overlay" onClick={() => setShowPopup(false)}></div>
-          
-          <div className="popup-content">
-            <div className="popup-header">
-              <h2>Complete Your Payment</h2>
-              <button 
-                className="close-btn"
-                onClick={() => setShowPopup(false)}
-              >
-                ×
-              </button>
-            </div>
-
-            <div className="payment-methods">
-              {/* QR Code Section */}
-              <div className="payment-method">
-                <h4>Scan QR Code to Pay</h4>
-                <div className="qr-section">
-                  <img src={qrCodeImage} alt="QR Code" className="qr-code" />
-                  <div className="qr-info">
-                    <p>Scan with any UPI app</p>
-                    <small>Recommended for instant payment</small>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bank Details Section */}
-              <div className="payment-method">
-                <h4>Bank Transfer Details</h4>
-                <div className="bank-details">
-                  <div className="bank-row">
-                    <span>Account Holder:</span>
-                    <strong>Narendra Atmaling Gore</strong>
-                  </div>
-                  <div className="bank-row">
-                    <span>Bank:</span>
-                    <span>Bank of Baroda</span>
-                  </div>
-                  <div className="bank-row">
-                    <span>A/c No:</span>
-                    <code>04518100000979</code>
-                  </div>
-                  <div className="bank-row">
-                    <span>IFSC Code:</span>
-                    <code>BARB0SHIPOO</code>
-                  </div>
-                  <div className="bank-row">
-                    <span>Branch:</span>
-                    <span>Shivaji Nagar</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="payment-instructions">
-              <div className="alert-box">
-                <FiCheckCircle className="alert-icon" />
-                <div>
-                  <strong>Important:</strong> After payment, send screenshot to WhatsApp
-                  <a href="https://wa.me/918452136887" className="whatsapp-link">
-                    +91 84521 36887
-                  </a>
-                </div>
-              </div>
-              
-              <div className="popup-actions">
-                <button 
-                  className="got-it-btn"
-                  onClick={() => setShowPopup(false)}
-                >
-                  Got it, I'll make payment
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

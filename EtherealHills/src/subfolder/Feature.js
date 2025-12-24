@@ -28,6 +28,16 @@ const cardsData = {
       { icon: faMusic, text: "Live Music" },
     ],
   },
+  Party: {
+    title: "31st Party 2025",
+    features: [
+      { icon: faBed, text: "✨ Camping stay" },
+      { icon: faPeace, text: "🔥 Bonfire" },
+      { icon: faMusic, text: "🎧 Live DJ & lights" },
+      { icon: faCompactDisc, text: "🎆 Fireworks celebration" },
+      { icon: faUtensils, text: "🍽️ Dinner + breakfast included" },
+    ],
+  },
   Cottage: {
     title: "Cottage Stay",
     features: [

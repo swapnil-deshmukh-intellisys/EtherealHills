@@ -24,24 +24,43 @@ const Package = () => {
 
   const packages = [
     {
+      id: 0,
+      title: "31st Party 2025",
+      price: "₹1499",
+      description: "New Year celebration package",
+      image: img2,
+      available: true,
+      badge: "Special",
+      features: [
+        "✨ Camping stay",
+        "🔥 Bonfire",
+        "🎧 Live DJ & lights",
+        "🎆 Fireworks celebration",
+        "🍽️ Dinner + breakfast included",
+      ],
+      popupKey: "Party",
+    },
+    {
       id: 1,
       title: "Tent Stay",
-      price: "Starting From ₹1499",
+      price: "From ₹1999",
       description: "Authentic camping experience with modern comforts",
       image: img2,
       available: true,
       badge: "Most Popular",
-      features: ["BBQ Night", "Live Music", "Games & Activities", "Lake View"]
+      features: ["BBQ Night", "Live Music", "Games & Activities", "Lake View"],
+      popupKey: "Tent",
     },
     {
       id: 2,
       title: "Cottage Stay",
-      price: "Starting From ₹1999",
+      price: "Starting From ₹2499",
       description: "Private cottage with premium amenities",
       image: img1,
       available: false,
       badge: "Coming Soon",
-      features: ["Private Pool", "Personal Butler", "Gourmet Dining", "AC Rooms"]
+      features: ["Private Pool", "Personal Butler", "Gourmet Dining", "AC Rooms"],
+      popupKey: "Cottage",
     },
     {
       id: 3,
@@ -51,8 +70,9 @@ const Package = () => {
       image: imgD1,
       available: false,
       badge: "Premium",
-      features: ["360° Views", "Private Jacuzzi", "Candlelight Dinner", "AC"]
-    }
+      features: ["360° Views", "Private Jacuzzi", "Candlelight Dinner", "AC"],
+      popupKey: "Dome",
+    },
   ];
 
   return (
@@ -114,12 +134,14 @@ const Package = () => {
                     <span>Coming Soon</span>
                   </button>
                 )}
-                <button 
-                  className={styles["features-btn"]}
-                  onClick={() => openpop(pkg.title.split(' ')[0])}
-                >
-                  View Features
-                </button>
+                {pkg.popupKey ? (
+                  <button 
+                    className={styles["features-btn"]}
+                    onClick={() => openpop(pkg.popupKey)}
+                  >
+                    View Features
+                  </button>
+                ) : null}
               </div>
             </div>
           </div>

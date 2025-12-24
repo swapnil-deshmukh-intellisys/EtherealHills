@@ -122,6 +122,8 @@
   padding: 3rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .formContainer * {
@@ -496,8 +498,19 @@
     font-size: 1rem;
   }
   
+  .formSection {
+    padding: 1.25rem 0.75rem;
+  }
+  
   .formContainer {
-    padding: 2rem;
+    max-width: 360px;
+    padding: 1.5rem;
+  }
+  
+  .formOptions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
   
   .formTitle {
@@ -514,6 +527,18 @@
     width: 50px;
     height: 50px;
     font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .formSection {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .formContainer {
+    max-width: 320px;
+    padding: 1.25rem;
+    border-radius: 18px;
   }
 }
 

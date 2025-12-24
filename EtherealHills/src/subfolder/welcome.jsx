@@ -82,7 +82,7 @@ const WelcomePage = () => {
               </div>
             </div>
 
-            <div className={styles["description"]}>
+            {/* <div className={styles["description"]}>
               <p>
                 We've crafted an exclusive glamping experience at Pawna Lake near Lonavala. 
                 Our luxury campsites offer the perfect blend of nature's serenity and modern 
@@ -96,7 +96,7 @@ const WelcomePage = () => {
                   <span className={styles["btn-arrow"]}>→</span>
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
