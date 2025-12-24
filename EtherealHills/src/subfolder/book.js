@@ -8,6 +8,28 @@ import { FaMale, FaFemale } from "react-icons/fa";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 const PRICE_PER_PERSON = 1499;
+const MIN_CHECKIN_DATE = "2025-12-31";
+
+const parseISODate = (value) => {
+  if (!value) return null;
+  const [y, m, d] = value.split("-").map((v) => Number.parseInt(v, 10));
+
+  if (!y || !m || !d) return null;
+  return new Date(y, m - 1, d);
+};
+
+const formatISODate = (date) => {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+};
+
+const addDays = (date, days) => {
+  const next = new Date(date);
+  next.setDate(next.getDate() + days);
+  return next;
+};
 
 function Book({ stayType }) {
   const [formData, setFormData] = useState({
@@ -32,6 +54,10 @@ function Book({ stayType }) {
   const maxPeopleAllowed = selectedTents.length * 2;
   const totalAmount = totalPeople * PRICE_PER_PERSON;
 
+  const minCheckOutDate = formData.checkIn
+    ? formatISODate(addDays(parseISODate(formData.checkIn), 1))
+    : "";
+
   const handleTentSelect = (tentNumber) => {
     setSelectedTents((prevSelectedTents) =>
       prevSelectedTents.includes(tentNumber)
@@ -42,7 +68,24 @@ function Book({ stayType }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === "checkIn") {
+      setFormData((prev) => {
+        const next = { ...prev, checkIn: value };
+        if (!value) {
+          next.checkOut = "";
+          return next;
+        }
+
+        const nextMinCheckOut = formatISODate(addDays(parseISODate(value), 1));
+        if (next.checkOut && next.checkOut < nextMinCheckOut) {
+          next.checkOut = "";
+        }
+        return next;
+      });
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
     
     // Clear error for this field
     if (errors[name]) {
@@ -67,6 +110,25 @@ function Book({ stayType }) {
     if (!formData.checkOut) errorMessages.checkOut = "Check-Out date is required";
     if (selectedTents.length === 0) {
       errorMessages.selectedTents = "Please select at least one tent";
+    }
+
+    if (formData.checkIn) {
+      const checkInDate = parseISODate(formData.checkIn);
+      const earliest = parseISODate(MIN_CHECKIN_DATE);
+      if (checkInDate && earliest && checkInDate < earliest) {
+        errorMessages.checkIn = "Bookings start from 31-12-2025";
+      }
+    }
+
+    if (formData.checkIn && formData.checkOut) {
+      const checkInDate = parseISODate(formData.checkIn);
+      const checkOutDate = parseISODate(formData.checkOut);
+      if (checkInDate && checkOutDate) {
+        const minCheckOut = addDays(checkInDate, 1);
+        if (checkOutDate < minCheckOut) {
+          errorMessages.checkOut = "Check-Out must be at least 1 day after Check-In";
+        }
+      }
     }
 
     if (totalPeople <= 0) {
@@ -290,6 +352,7 @@ function Book({ stayType }) {
                     name="checkIn"
                     value={formData.checkIn}
                     onChange={handleInputChange}
+                    min={MIN_CHECKIN_DATE}
                     className={errors.checkIn ? 'error' : ''}
                   />
                   {errors.checkIn && (
@@ -307,6 +370,8 @@ function Book({ stayType }) {
                     name="checkOut"
                     value={formData.checkOut}
                     onChange={handleInputChange}
+                    min={minCheckOutDate}
+                    disabled={!formData.checkIn}
                     className={errors.checkOut ? 'error' : ''}
                   />
                   {errors.checkOut && (
