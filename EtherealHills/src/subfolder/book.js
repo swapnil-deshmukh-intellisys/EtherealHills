@@ -10,6 +10,24 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:500
 const PRICE_PER_PERSON = 1499;
 const MIN_CHECKIN_DATE = "2025-12-31";
 
+const loadRazorpayCheckout = () =>
+  new Promise((resolve) => {
+    if (window.Razorpay) return resolve(true);
+
+    const existing = document.querySelector('script[src="https://checkout.razorpay.com/v1/checkout.js"]');
+    if (existing) {
+      existing.addEventListener("load", () => resolve(true));
+      existing.addEventListener("error", () => resolve(false));
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+
 const parseISODate = (value) => {
   if (!value) return null;
   const [y, m, d] = value.split("-").map((v) => Number.parseInt(v, 10));
@@ -173,8 +191,84 @@ function Book({ stayType }) {
         throw new Error(data?.message || 'Failed to submit booking');
       }
 
-      alert("Please make payment on next page!");
-      setShowPopup(true);
+      const booking = data?.booking;
+      const bookingDbId = booking?._id;
+      if (!bookingDbId) {
+        throw new Error("Booking created but booking id missing");
+      }
+
+      const sdkOk = await loadRazorpayCheckout();
+      if (!sdkOk) {
+        throw new Error("Failed to load Razorpay Checkout");
+      }
+
+      const orderRes = await fetch(`${API_BASE_URL}/payments/create-order`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amountInr: totalAmount,
+          bookingId: bookingDbId,
+        }),
+      });
+
+      const orderData = await orderRes.json();
+      if (!orderRes.ok || !orderData?.ok) {
+        throw new Error(orderData?.message || "Failed to create payment order");
+      }
+
+      const options = {
+        key: orderData.keyId,
+        amount: orderData.order.amount,
+        currency: orderData.order.currency,
+        name: "EtherealHills",
+        description: "Booking Payment",
+        order_id: orderData.order.id,
+        prefill: {
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          contact: formData.phone,
+        },
+        notes: {
+          bookingId: bookingData.bookingId,
+          stayType,
+          totalPeople: String(totalPeople),
+        },
+        theme: {
+          color: "#0f172a",
+        },
+        handler: async function (response) {
+          try {
+            const verifyRes = await fetch(`${API_BASE_URL}/payments/verify`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                bookingId: bookingDbId,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              }),
+            });
+
+            const verifyData = await verifyRes.json();
+            if (!verifyRes.ok || !verifyData?.ok) {
+              throw new Error(verifyData?.message || "Payment verification failed");
+            }
+
+            alert("Payment successful!");
+          } catch (err) {
+            console.error("Payment verify error:", err);
+            alert("Payment done but verification failed. Please contact support.");
+          }
+        },
+        modal: {
+          ondismiss: function () {
+            setShowPopup(true);
+          },
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
       
       // Clear form data
       setFormData({
@@ -191,7 +285,7 @@ function Book({ stayType }) {
       
     } catch (error) {
       console.error("Error adding booking:", error);
-      alert("Failed to submit booking. Please try again.");
+      alert(error?.message || "Failed to submit booking. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
