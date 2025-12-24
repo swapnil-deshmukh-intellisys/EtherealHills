@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaCampground, FaMapMarkerAlt, FaRoad, FaStar } from 'react-icons/fa';
 import styles from './welcome.module.css';
-import pawana from '../Assets/AsideImage.webp';
+// import pawana from '../Assets/AsideImage.webp';
+import InstagramReel from './InstagramReel';
 
 const WelcomePage = () => {
   return (
@@ -21,7 +22,7 @@ const WelcomePage = () => {
       </div>
 
       <div className={styles["welcome-content"]}>
-        <div className={styles["content-left"]}>
+        {/* <div className={styles["content-left"]}>
           <div className={styles["image-wrapper"]}>
             <img 
               src={pawana}
@@ -34,6 +35,14 @@ const WelcomePage = () => {
                 <h3>Pawna Lake Retreat</h3>
               </div>
             </div>
+          </div>
+        </div> */}
+        <div className={styles["content-left"]}>
+          <div className={styles["reel-item"]}>
+            <InstagramReel permalink="https://www.instagram.com/reel/DSmo9HFAos4/" />
+          </div>
+          <div className={styles["reel-item"]}>
+            <InstagramReel permalink="https://www.instagram.com/reel/DSc4l0LCZmS/" />
           </div>
         </div>
 
@@ -50,8 +59,7 @@ const WelcomePage = () => {
                   <FaMapMarkerAlt aria-hidden="true" />
                 </div>
                 <div className={styles["feature-text"]}>
-                  <h4>Strategic Location</h4>
-                  <p>Perfectly situated at Pawna Lake between Mumbai and Pune</p>
+                  <p><strong>Strategic Location:</strong> Perfectly situated at Pawna Lake between Mumbai and Pune</p>
                 </div>
               </div>
               
@@ -60,8 +68,7 @@ const WelcomePage = () => {
                   <FaRoad aria-hidden="true" />
                 </div>
                 <div className={styles["feature-text"]}>
-                  <h4>Easy Access</h4>
-                  <p>120km from Mumbai, 65km from Pune, with transportation assistance</p>
+                  <p><strong>Easy Access:</strong> 120km from Mumbai, 65km from Pune, with transportation assistance</p>
                 </div>
               </div>
               
@@ -70,8 +77,7 @@ const WelcomePage = () => {
                   <FaStar aria-hidden="true" />
                 </div>
                 <div className={styles["feature-text"]}>
-                  <h4>Premium Amenities</h4>
-                  <p>Luxury camping with modern comforts in nature's lap</p>
+                  <p><strong>Premium Amenities:</strong> Luxury camping with modern comforts in nature's lap</p>
                 </div>
               </div>
             </div>

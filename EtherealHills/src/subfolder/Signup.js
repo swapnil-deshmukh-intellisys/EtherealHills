@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FiMail, FiLock, FiUser, FiCheck, FiArrowRight, FiEye, FiEyeOff } from 'react-icons/fi';
 import styles from './Signup.module.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://zerofx.onrender.com';
 
 const Signup = () => {
   const [formData, setFormData] = useState({ 
