@@ -6,7 +6,7 @@ import qrCodeImage from "../Assets/QR2.jpg";
 import { FiCalendar, FiUser, FiMail, FiPhone, FiCheckCircle } from "react-icons/fi";
 import { FaMale, FaFemale } from "react-icons/fa";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://etherealhills.onrender.com/api';
 const PRICE_PER_PERSON = 1499;
 const MIN_CHECKIN_DATE = "2025-12-31";
 
