@@ -3,7 +3,7 @@
   min-height: calc(100vh - var(--navbar-height, 0px));
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  padding: 2rem;
+  padding: clamp(1rem, 4vw, 2rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,14 +80,32 @@
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   border-radius: 20px;
-  padding: 2.5rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
+  margin: 0 auto;
+  min-width: 0;
 }
 
 .formCard * {
   box-sizing: border-box;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.pageSubtitle {
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin: 0 0 1.75rem;
+  text-align: center;
 }
 
 /* Status Alert */
@@ -504,6 +522,15 @@
   
   .headerContent h2 {
     font-size: 1.75rem;
+  }
+  
+  .pageTitle {
+    font-size: 1.6rem;
+  }
+
+  .pageSubtitle {
+    font-size: 0.9375rem;
+    margin-bottom: 1.25rem;
   }
   
   .formCard {

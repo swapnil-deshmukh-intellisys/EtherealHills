@@ -217,7 +217,7 @@ const ContactUs = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className={`${styles["form-input"]} ${errors.name ? styles.error : ''}`}
-                    placeholder="John Doe"
+                    
                   />
                   {errors.name && (
                     <span className={styles["error-message"]}>
@@ -236,7 +236,7 @@ const ContactUs = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className={`${styles["form-input"]} ${errors.email ? styles.error : ''}`}
-                    placeholder="john@example.com"
+                    
                   />
                   {errors.email && (
                     <span className={styles["error-message"]}>
@@ -257,7 +257,7 @@ const ContactUs = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className={styles["form-input"]}
-                    placeholder="+91 9876543210"
+                    
                   />
                 </div>
 
@@ -325,7 +325,7 @@ const ContactUs = () => {
       </section>
 
       {/* Map Section */}
-      <section className={styles["map-section"]}>
+      {/* <section className={styles["map-section"]}>
         <div className={styles.container}>
           <div className={styles["map-container"]}>
             <div className={styles["map-header"]}>
@@ -343,7 +343,7 @@ const ContactUs = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       
     </div>

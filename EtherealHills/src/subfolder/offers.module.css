@@ -56,7 +56,7 @@
 
 .offers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.75rem;
   max-width: 1400px;
   margin: 0 auto 3.5rem;
@@ -66,7 +66,7 @@
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  padding: 1.5rem;
+  padding: 1.1rem;
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -90,16 +90,20 @@
 
 .image-container {
   position: relative;
-  border-radius: 15px;
+  border-radius: 9999px;
   overflow: hidden;
   margin-bottom: 1.5rem;
-  height: 250px;
+  height: 110px;
+  width: 110px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .offer-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.6s ease;
 }
 
@@ -122,17 +126,19 @@
 }
 
 .card-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: white;
   margin-bottom: 0.75rem;
+  text-align: center;
 }
 
 .card-description {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #cbd5e1;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .card-hover {
@@ -251,7 +257,8 @@
   }
   
   .image-container {
-    height: 220px;
+    height: 96px;
+    width: 96px;
   }
   
   .offers-cta {
@@ -273,11 +280,11 @@
   }
   
   .offer-card {
-    padding: 1.5rem;
+    padding: 1rem;
   }
   
   .card-title {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
   }
   
   .cta-button {

@@ -43,13 +43,7 @@ const Offers = () => {
 
   return (
     <div className={styles["offers-section"]}>
-      <div className={styles["offers-header"]}>
-        <div className={styles["section-label"]}>Premium Features</div>
-        <h2 className={styles["section-title"]}>Experience Excellence</h2>
-        <p className={styles["section-subtitle"]}>
-          Every detail crafted for your perfect getaway
-        </p>
-      </div>
+      
 
       <div className={styles["offers-grid"]}>
         {features.map((feature, index) => (
@@ -74,8 +68,7 @@ const Offers = () => {
             </div>
             
             <div className={styles["card-hover"]}>
-              <span className={styles["hover-text"]}>Learn More</span>
-              <span className={styles["hover-arrow"]}>→</span>
+            
             </div>
           </div>
         ))}

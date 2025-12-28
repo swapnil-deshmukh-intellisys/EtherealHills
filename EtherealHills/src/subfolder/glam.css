@@ -1,7 +1,3 @@
-.tent-main-div-gallery {
-  /* padding: 50px; */
-}
-
 .tent-heading-glam {
   text-align: center;
   margin-bottom: 50px;
@@ -14,6 +10,7 @@
   font-family: Arial, sans-serif;
   width: 100%;
   background: #f0f0f0;
+  box-sizing: border-box;
 }
 
 .tent-modern-gallery h1 {
@@ -70,6 +67,8 @@
   gap: 20px;
   margin: 20px auto;
   flex-wrap: wrap;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .tent-image-card {
@@ -199,6 +198,15 @@
     width: 150px; /* Smaller cards for mobile */
     height: 150px;
   }
+
+  #tent-image-1,
+  #tent-image-2,
+  #tent-image-3,
+  #tent-image-4,
+  #tent-image-5,
+  #tent-image-6 {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -231,5 +239,14 @@
   .tent-image-card {
     width: 120px; /* Further reduced size for very small screens */
     height: 120px;
+  }
+
+  #tent-image-1,
+  #tent-image-2,
+  #tent-image-3,
+  #tent-image-4,
+  #tent-image-5,
+  #tent-image-6 {
+    margin-top: 0;
   }
 }

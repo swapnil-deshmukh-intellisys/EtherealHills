@@ -17,7 +17,7 @@
   height: 80vh;
   min-height: 600px;
   background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.30) 100%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%),
     url('../Assets/tent6.avif');
   background-size: cover;
   background-position: center;
@@ -36,8 +36,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.10) 0%, transparent 60%),
-              radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
+  /* background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.10) 0%, transparent 60%),
+              radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 60%); */
 }
 
 .hero-container {
@@ -95,7 +95,7 @@
   font-weight: 600;
   letter-spacing: 1px;
   border-radius: 50px;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   backdrop-filter: blur(10px);
 }
 
@@ -105,13 +105,13 @@
   font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.1;
-  color: #0f172a;
+  color: #ffffff;
   text-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
-  color: #334155;
+  color: #dfe4eb;
   line-height: 1.6;
   font-weight: 300;
 }

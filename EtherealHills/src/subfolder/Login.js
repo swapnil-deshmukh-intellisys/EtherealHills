@@ -85,119 +85,116 @@ const Login = ({ setIsLoggedIn }) => {
 
   return (
     <div className={styles.loginPage}>
-      <div className={styles.formSection}>
-        <div className={styles.formContainer}>
-          <div className={styles.formHeader}>
-            <div className={styles.logo}>
-              
-              <div className={styles.logoText}>
-                <h2>Ethereal Hills</h2>
-                <p>Camping & Glamping</p>
-              </div>
+      <div className={styles.formContainer}>
+        <div className={styles.formHeader}>
+          <div className={styles.logo}>
+            <div className={styles.logoText}>
+              <h2>Ethereal Hills</h2>
+              <p>Camping & Glamping</p>
             </div>
-            <h1 className={styles.formTitle}>Welcome Back</h1>
-            <p className={styles.formSubtitle}>Sign in to your account to continue</p>
+          </div>
+          <h1 className={styles.formTitle}>Welcome Back</h1>
+          <p className={styles.formSubtitle}>Sign in to your account to continue</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className={styles.loginForm}>
+          {errors.submit && (
+            <div className={styles.errorAlert}>
+              {errors.submit}
+            </div>
+          )}
+
+          <div className={styles.formGroup}>
+            <label className={styles.inputLabel}>
+              <FiMail className={styles.labelIcon} />
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Enter your email"
+              className={`${styles.formInput} ${errors.email ? styles.error : ''}`}
+              disabled={isLoading}
+            />
+            {errors.email && <span className={styles.errorText}>{errors.email}</span>}
           </div>
 
-          <form onSubmit={handleSubmit} className={styles.loginForm}>
-            {errors.submit && (
-              <div className={styles.errorAlert}>
-                {errors.submit}
-              </div>
-            )}
-
-            <div className={styles.formGroup}>
-              <label className={styles.inputLabel}>
-                <FiMail className={styles.labelIcon} />
-                Email Address
-              </label>
+          <div className={styles.formGroup}>
+            <label className={styles.inputLabel}>
+              <FiLock className={styles.labelIcon} />
+              Password
+            </label>
+            <div className={styles.passwordWrapper}>
               <input
-                type="email"
-                name="email"
-                value={formData.email}
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
                 onChange={handleInputChange}
-                placeholder="Enter your email"
-                className={`${styles.formInput} ${errors.email ? styles.error : ''}`}
+                placeholder="Enter your password"
+                className={`${styles.formInput} ${errors.password ? styles.error : ''}`}
                 disabled={isLoading}
               />
-              {errors.email && <span className={styles.errorText}>{errors.email}</span>}
+              <button
+                type="button"
+                className={styles.passwordToggle}
+                onClick={() => setShowPassword(!showPassword)}
+                disabled={isLoading}
+              >
+                {showPassword ? <FiEyeOff /> : <FiEye />}
+              </button>
             </div>
+            {errors.password && <span className={styles.errorText}>{errors.password}</span>}
+          </div>
 
-            <div className={styles.formGroup}>
-              <label className={styles.inputLabel}>
-                <FiLock className={styles.labelIcon} />
-                Password
-              </label>
-              <div className={styles.passwordWrapper}>
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  placeholder="Enter your password"
-                  className={`${styles.formInput} ${errors.password ? styles.error : ''}`}
-                  disabled={isLoading}
-                />
-                <button
-                  type="button"
-                  className={styles.passwordToggle}
-                  onClick={() => setShowPassword(!showPassword)}
-                  disabled={isLoading}
-                >
-                  {showPassword ? <FiEyeOff /> : <FiEye />}
-                </button>
-              </div>
-              {errors.password && <span className={styles.errorText}>{errors.password}</span>}
-            </div>
+          <div className={styles.formOptions}>
+            <label className={styles.rememberMe}>
+              <input type="checkbox" disabled={isLoading} />
+              <span>Remember me</span>
+            </label>
+            <Link to="/forgot-password" className={styles.forgotLink}>
+              Forgot password?
+            </Link>
+          </div>
 
-            <div className={styles.formOptions}>
-              <label className={styles.rememberMe}>
-                <input type="checkbox" disabled={isLoading} />
-                <span>Remember me</span>
-              </label>
-              <Link to="/forgot-password" className={styles.forgotLink}>
-                Forgot password?
-              </Link>
-            </div>
+          <button 
+            type="submit" 
+            className={styles.submitButton}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className={styles.spinner}></span>
+                Signing in...
+              </>
+            ) : (
+              <>
+                Sign In
+                <FiArrowRight className={styles.buttonIcon} />
+              </>
+            )}
+          </button>
 
-            <button 
-              type="submit" 
-              className={styles.submitButton}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <span className={styles.spinner}></span>
-                  Signing in...
-                </>
-              ) : (
-                <>
-                  Sign In
-                  <FiArrowRight className={styles.buttonIcon} />
-                </>
-              )}
-            </button>
+          <div className={styles.divider}>
+            <span>Don't have an account?</span>
+          </div>
 
-            <div className={styles.divider}>
-              <span>Don't have an account?</span>
-            </div>
+          <button
+            type="button"
+            onClick={() => navigate('/create-account')}
+            className={styles.createAccountButton}
+            disabled={isLoading}
+          >
+            Create New Account
+          </button>
 
-            <button
-              type="button"
-              onClick={() => navigate('/create-account')}
-              className={styles.createAccountButton}
-              disabled={isLoading}
-            >
-              Create New Account
-            </button>
-
-            <div className={styles.terms}>
-              By signing in, you agree to our 
-              <Link to="/terms"> Terms of Service</Link> and 
-              <Link to="/privacy"> Privacy Policy</Link>
-            </div>
-          </form>
-        </div>
+          <div className={styles.terms}>
+            By signing in, you agree to our 
+            <Link to="/terms"> Terms of Service</Link> and 
+            <Link to="/privacy"> Privacy Policy</Link>
+          </div>
+        </form>
       </div>
     </div>
   );

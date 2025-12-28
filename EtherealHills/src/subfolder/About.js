@@ -43,21 +43,21 @@ const Aboutus = () => {
     }
   ];
 
-  const stats = [
-    { number: "5000+", label: "Happy Campers", icon: <Users /> },
-    { number: "98%", label: "Satisfaction Rate", icon: <Star /> },
-    { number: "50+", label: "Awards & Recognition", icon: <Award /> },
-    { number: "7", label: "Years of Excellence", icon: <Calendar /> }
-  ];
+  // const stats = [
+  //   { number: "5000+", label: "Happy Campers", icon: <Users /> },
+  //   { number: "98%", label: "Satisfaction Rate", icon: <Star /> },
+  //   { number: "50+", label: "Awards & Recognition", icon: <Award /> },
+  //   { number: "7", label: "Years of Excellence", icon: <Calendar /> }
+  // ];
 
   return (
     <div className={styles["about-page"]}>
       {/* Hero Section */}
       <section className={styles["about-hero"]}>
         <div className={styles["hero-overlay"]}>
-          <span className={styles["hero-badge"]}>
+          {/* <span className={styles["hero-badge"]}>
             <Sparkles /> Premium Lakeside Retreat
-          </span>
+          </span> */}
           <h1 className={styles["hero-title"]}>
             Where Luxury Meets <br /> Wilderness
           </h1>
@@ -87,22 +87,32 @@ const Aboutus = () => {
         <div className={styles.container}>
           <div className={styles["story-content"]}>
             <div className={styles["story-text"]}>
-              <span className={styles["section-label"]}>Our Journey</span>
               <h2 className={styles["section-title"]}>
                 Crafting Unforgettable <br /> Lakeside Memories
               </h2>
               <p className={styles["story-description"]}>
-                Founded with a vision to redefine outdoor hospitality, Pawna Lake Camping 
-                has grown from a passionate idea into Pune's premier lakeside retreat. 
-                We believe that luxury camping should offer both adventure and comfort.
+                Escape the noise. Breathe the silence. Wake up by the lake.
+In today’s fast-paced world, stress has become a part of everyday life. Endless workdays, screens, and deadlines leave little room to truly unwind. If you’re craving a break that refreshes your mind and soul, Pawna Lake Camping is calling you 🌄
+Nestled near Lonavala, between Pune and Mumbai, Pawna Lake offers the perfect escape into nature. Imagine pitching your tent beside a calm lakeside, watching the sun dip behind the Sahyadri hills, enjoying a warm campfire under a sky full of stars, and waking up to cool morning breezes and birdsong.
+
               </p>
               <p className={styles["story-description"]}>
-                Every detail, from our sustainably-built tents to curated experiences, 
-                is designed to create moments that linger in memory long after you've returned home.
+                📍 Easy to reach
+Just 120 km from Mumbai
+Around 65 km from Pune
+Drive down comfortably in your own car
+Or take a train to Lonavala—we’ll arrange a cab for you at a nominal extra cost
+🔥 Why choose our Pawna Lake Camping?
+Scenic lakeside location
+Peaceful, pollution-free environment
+Perfect for couples, friends, families & solo travelers
+Ideal for stress relief, digital detox & quick weekend getaways
+✨ Don’t just plan a break—experience it.
+Spots fill fast, especially on weekends. Book now and give yourself the nature escape you truly deserve.
               </p>
               
               {/* Stats */}
-              <div className={styles["stats-grid"]}>
+              {/* <div className={styles["stats-grid"]}>
                 {stats.map((stat, index) => (
                   <div key={index} className={styles["stat-item"]}>
                     <div className={styles["stat-icon"]}>{stat.icon}</div>
@@ -110,15 +120,15 @@ const Aboutus = () => {
                     <div className={styles["stat-label"]}>{stat.label}</div>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
             
             <div className={styles["story-image"]}>
-              <img src={aboutbg} alt="Luxury Camping at Pawna Lake" />
+              <img src= "https://content.jdmagicbox.com/comp/lonavala/d5/9999p2114.2114.191230201050.x5d5/catalogue/pawana-lake-camping-booking-lonavala-lonavala-tents-on-rent-vqioqxnhfp.jpg" alt="Luxury Camping at Pawna Lake" />
               <div className={styles["image-overlay"]}></div>
-              <div className={styles["image-badge"]}>
+              {/* <div className={styles["image-badge"]}>
                 <Target /> Est. 2017
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -128,8 +138,7 @@ const Aboutus = () => {
       <section className={styles["values-section"]}>
         <div className={styles.container}>
           <div className={styles["section-header"]}>
-            <span className={styles["section-label"]}>Our Ethos</span>
-            <h2 className={styles["section-title"]}>Core Values</h2>
+            {/* <h2 className={styles["section-title"]}>Core Values</h2> */}
             <p className={styles["section-subtitle"]}>
               Guiding principles that shape every aspect of your experience
             </p>
@@ -148,7 +157,7 @@ const Aboutus = () => {
       </section>
 
       {/* Mission Section */}
-      <section className={styles["mission-section"]}>
+      {/* <section className={styles["mission-section"]}>
         <div className={styles["mission-overlay"]}>
           <div className={styles.container}>
             <div className={styles["mission-content"]}>
@@ -177,7 +186,7 @@ const Aboutus = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
      
     </div>
