@@ -2,14 +2,14 @@ import React from "react";
 import "./glam.css";
 
 // Glam Stay images
-import img1 from "../Assets/g1.jpeg";
-import img2 from "../Assets/glam.jpg";
-import img3 from "../Assets/glam2.jpg";
-import img4 from "../Assets/tent1.jpg";
-import img5 from "../Assets/dome (2).jpg";
-import img6 from "../Assets/g6.jpeg";
-import img7 from "../Assets/tent5.jpg";
-import img8 from "../Assets/book2.jpg";
+import img1 from "../Assets/s3.jpeg";
+import img2 from "../Assets/s2.jpeg";
+import img3 from "../Assets/s1.jpeg";
+import img4 from "../Assets/s4.jpeg";
+import img5 from "../Assets/s5.jpeg";
+import img6 from "../Assets/s6.jpeg";
+import img7 from "../Assets/s7.jpeg";
+import img8 from "../Assets/s8.jpeg";
 // Tent images
 import tent1 from "../Assets/book1.jpg";
 import tent2 from "../Assets/gg1.jpg";

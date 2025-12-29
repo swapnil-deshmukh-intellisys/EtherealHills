@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import ss1 from "../Assets/s1.jpeg";
 import { 
   ArrowRight, 
   Globe, 
@@ -124,7 +125,7 @@ Spots fill fast, especially on weekends. Book now and give yourself the nature e
             </div>
             
             <div className={styles["story-image"]}>
-              <img src= "https://content.jdmagicbox.com/comp/lonavala/d5/9999p2114.2114.191230201050.x5d5/catalogue/pawana-lake-camping-booking-lonavala-lonavala-tents-on-rent-vqioqxnhfp.jpg" alt="Luxury Camping at Pawna Lake" />
+              <img src= {ss1} alt="Luxury Camping at Pawna Lake" />
               <div className={styles["image-overlay"]}></div>
               {/* <div className={styles["image-badge"]}>
                 <Target /> Est. 2017
