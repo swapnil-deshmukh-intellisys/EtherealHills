@@ -194,6 +194,7 @@ const ContactUs = () => {
       </section>
 
       {/* Contact Form Section */}
+      {/* 
       <section className={styles["form-section"]}>
         <div className={styles.container}>
           <div className={styles["form-container"]}>
@@ -323,6 +324,7 @@ const ContactUs = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* Map Section */}
       {/* <section className={styles["map-section"]}>

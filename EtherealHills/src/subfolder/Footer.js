@@ -11,12 +11,9 @@ const Footer = () => {
     quick: [
       { path: "/HomeP", label: "Home" },
       { path: "/aboutus", label: "About Us" },
-      { path: "/package", label: "Packages" },
-      { path: "/facility", label: "Facilities" },
       { path: "/glam", label: "Gallery" },
       { path: "/contact", label: "Contact Us" },
       { path: "/policy", label: "Privacy Policy" },
-      { path: "/terms", label: "Terms & Conditions" },
     ],
     contact: [
       {
@@ -149,19 +146,15 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="footer-bottom-container">
           <p className="copyright">
-            © {currentYear} Ethereal Hills Camping & Glamping. All rights reserved.
+            &copy; {currentYear} Ethereal Hills Camping & Glamping. All rights reserved.
           </p>
           <div className="footer-legal">
             <NavLink to="/policy" className="legal-link">
               Privacy Policy
             </NavLink>
             <span className="legal-separator">•</span>
-            <NavLink to="/terms" className="legal-link">
-              Terms & Conditions
-            </NavLink>
-            <span className="legal-separator">•</span>
             <span className="legal-text">
-              Designed with ❤️ for nature lovers
+              Designed with &hearts; for nature lovers
             </span>
           </div>
         </div>

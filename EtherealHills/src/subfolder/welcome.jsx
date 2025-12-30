@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCampground, FaMapMarkerAlt, FaRoad, FaStar } from 'react-icons/fa';
+import { FaCampground } from 'react-icons/fa';
 import styles from './welcome.module.css';
 // import pawana from '../Assets/AsideImage.webp';
 import InstagramReel from './InstagramReel';
@@ -49,38 +49,24 @@ const WelcomePage = () => {
         <div className={styles["content-right"]}>
           <div className={styles["text-content"]}>
             <p className={styles["lead-paragraph"]}>
-              Escape the noise and reconnect with nature—without giving up comfort.
-              Ethereal Hills brings luxury glamping to Pawna Lake with breathtaking views,
-              curated experiences, and a peaceful atmosphere.
+              Escape the noise. Breathe the silence. Wake up by the lake.
+              In today’s fast-paced world, stress has become a part of everyday life. Endless workdays, screens, and deadlines leave little room to truly unwind. If you’re craving a break that refreshes your mind and soul, Pawna Lake Camping is calling you 🌄
+              Nestled near Lonavala, between Pune and Mumbai, Pawna Lake offers the perfect escape into nature. Imagine pitching your tent beside a calm lakeside, watching the sun dip behind the Sahyadri hills, enjoying a warm campfire under a sky full of stars, and waking up to cool morning breezes and birdsong.
             </p>
-            <div className={styles["features-grid"]}>
-              <div className={styles["feature-item"]}>
-                <div className={styles["feature-icon"]}>
-                  <FaMapMarkerAlt aria-hidden="true" />
-                </div>
-                <div className={styles["feature-text"]}>
-                  <p><strong>Strategic Location:</strong> Perfectly situated at Pawna Lake between Mumbai and Pune</p>
-                </div>
-              </div>
-              
-              <div className={styles["feature-item"]}>
-                <div className={styles["feature-icon"]}>
-                  <FaRoad aria-hidden="true" />
-                </div>
-                <div className={styles["feature-text"]}>
-                  <p><strong>Easy Access:</strong> 120km from Mumbai, 65km from Pune, with transportation assistance</p>
-                </div>
-              </div>
-              
-              <div className={styles["feature-item"]}>
-                <div className={styles["feature-icon"]}>
-                  <FaStar aria-hidden="true" />
-                </div>
-                <div className={styles["feature-text"]}>
-                  <p><strong>Premium Amenities:</strong> Luxury camping with modern comforts in nature's lap</p>
-                </div>
-              </div>
-            </div>
+            <p className={styles["lead-paragraph"]}>
+              📍 Easy to reach
+              Just 120 km from Mumbai
+              Around 65 km from Pune
+              Drive down comfortably in your own car
+              Or take a train to Lonavala—we’ll arrange a cab for you at a nominal extra cost
+              🔥 Why choose our Pawna Lake Camping?
+              Scenic lakeside location
+              Peaceful, pollution-free environment
+              Perfect for couples, friends, families & solo travelers
+              Ideal for stress relief, digital detox & quick weekend getaways
+              ✨ Don’t just plan a break—experience it.
+              Spots fill fast, especially on weekends. Book now and give yourself the nature escape you truly deserve.
+            </p>
 
             {/* <div className={styles["description"]}>
               <p>

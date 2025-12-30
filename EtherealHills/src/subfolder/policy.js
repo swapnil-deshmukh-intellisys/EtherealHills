@@ -9,7 +9,7 @@ function PrivacyPolicy() {
 
       <h2>Refund Policy</h2>
       <p>
-        You are eligible for a refund (after 50% deduction as service tax) if cancellations are made 24 hours prior to the check-in time.
+        You are eligible for a refund (after 50% deduction as service tax) if cancellations are made 12 hours prior to the check-in time.
       </p>
 
       <h2>Accommodation Terms</h2>

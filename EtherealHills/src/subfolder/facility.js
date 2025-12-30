@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./facility.module.css";
-import tentImage from "../Assets/tent.jpg";
+import dome from "../Assets/dome (3).jpg";
 import bonfireImage from "../Assets/bonfire.jpg";
-import foodImage from "../Assets/food.jpg";
+import foodImage from "../Assets/food.png";
 import Dj from "../Assets/Dj.jpg";
 import Swimming from "../Assets/Swimming.jpg";
 import Games1 from "../Assets/Games1.jpg";
@@ -37,18 +37,25 @@ const Facility = () => {
     const steps = totalDuration / updateInterval;
 
     const incrementValues = {
-      customers: 40000 / steps,
-      reviews: 400 / steps,
+      customers: 20000 / steps,
+      reviews: 200 / steps,
       years: 5 / steps,
-      followers: 100000 / steps,
+      followers: 10000 / steps,
     };
+
+    setCounters({
+      customers: 0,
+      reviews: 0,
+      years: 0,
+      followers: 0,
+    });
 
     const counterInterval = setInterval(() => {
       setCounters((prev) => ({
-        customers: Math.min(prev.customers + incrementValues.customers, 40000),
-        reviews: Math.min(prev.reviews + incrementValues.reviews, 400),
+        customers: Math.min(prev.customers + incrementValues.customers, 20000),
+        reviews: Math.min(prev.reviews + incrementValues.reviews, 200),
         years: Math.min(prev.years + incrementValues.years, 5),
-        followers: Math.min(prev.followers + incrementValues.followers, 100000),
+        followers: Math.min(prev.followers + incrementValues.followers, 10000),
       }));
     }, updateInterval);
 
@@ -58,9 +65,9 @@ const Facility = () => {
   const facilities = [
     {
       id: 1,
-      title: "Luxury Tents",
+      title: "Luxury Dome",
       description: "Premium tents with comfortable bedding, power outlets, and lake views.",
-      image: tentImage
+      image: dome
     },
     {
       id: 2,
@@ -139,7 +146,7 @@ const Facility = () => {
       <section className={styles["facilities-hero"]}>
         <div className={styles["facilities-header"]}>
           <span className={styles["facilities-badge"]}>Premium Amenities</span>
-          <h1 className={styles["facilities-title"]}>World-Class Facilities</h1>
+          <h1 className={styles["facilities-title"]}>Amazing Facilities</h1>
           <p className={styles["facilities-subtitle"]}>
             Experience luxury camping with state-of-the-art amenities designed for your comfort
           </p>

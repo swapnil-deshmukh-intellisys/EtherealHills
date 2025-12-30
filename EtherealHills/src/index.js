@@ -3,6 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import tabLogo from './Assets/logo.png';
+
+const ensureFavicon = () => {
+  const existing = document.querySelector('link[rel~="icon"]');
+  const linkEl = existing || document.createElement('link');
+
+  linkEl.rel = 'icon';
+  linkEl.href = tabLogo;
+
+  if (!existing) {
+    document.head.appendChild(linkEl);
+  }
+};
+
+ensureFavicon();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

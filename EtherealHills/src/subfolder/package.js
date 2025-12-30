@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./package.module.css";
-import img1 from "../Assets/img5.jpg";
+import img1 from "../Assets/features.jpg";
 import img2 from "../Assets/tent1.jpg";
+import img3 from "../Assets/Dj - Copy.jpg";
 import imgD1 from "../Assets/dome (3).jpg";
 import Feature from "./Feature";
 
@@ -28,7 +29,7 @@ const Package = () => {
       title: "31st Party 2025",
       price: "₹1499",
       description: "New Year celebration package",
-      image: img2,
+      image: img3,
       available: true,
       badge: "Special",
       features: [
@@ -105,7 +106,12 @@ const Package = () => {
 
             <div className={styles["card-content"]}>
               <div className={styles["card-header"]}>
-                <h3 className={styles["card-title"]}>{pkg.title}</h3>
+                <h3 className={styles["card-title"]}>
+                  {pkg.title}
+                  {(pkg.title === "Cottage Stay" || pkg.title === "Dome Stay") && (
+                    <span className={styles["coming-soon-tag"]}>Coming Soon</span>
+                  )}
+                </h3>
                 <div className={styles["price-tag"]}>
                   <span className={styles.price}>{pkg.price}</span>
                   <span className={styles["per-person"]}>Per Person</span>

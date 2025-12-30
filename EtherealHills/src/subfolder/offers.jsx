@@ -11,7 +11,7 @@ const Offers = () => {
   const features = [
     {
       image: campimg,
-      title: "Lakeside Location",
+      title: "Lakeside View",
       description: "Premium waterfront camping with panoramic lake views"
     },
     {
