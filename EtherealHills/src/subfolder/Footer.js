@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../Assets/logo.png";
-import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import "./Footer.css";
 
@@ -22,8 +22,8 @@ const Footer = () => {
       },
       {
         icon: <FaPhone />,
-        text: "+91 77200 08787",
-        link: "tel:+917720008787"
+        text: "+91 84215 11990 / +91 8421174213",
+        link: "+91 84215 11990 / +91 8421174213"
       },
       {
         icon: <FaEnvelope />,
@@ -37,10 +37,8 @@ const Footer = () => {
       }
     ],
     social: [
-      { icon: <FaFacebookF />, link: "https://www.facebook.com/etherealhillsglamping", label: "Facebook" },
-      { icon: <FaInstagram />, link: "https://www.instagram.com/etherealhillsglamping", label: "Instagram" },
-      { icon: <FaTwitter />, link: "#", label: "Twitter" },
-      { icon: <FaYoutube />, link: "#", label: "YouTube" }
+      { icon: <FaFacebookF />, link: "#", label: "Facebook", disabled: true },
+      { icon: <FaInstagram />, link: "https://www.instagram.com/etherealhills_camping?igsh=eWxkeDJyemV4ejE3", label: "Instagram" }
     ]
   };
 
@@ -125,16 +123,26 @@ const Footer = () => {
               <h5 className="social-title">Follow Us</h5>
               <div className="social-icons">
                 {footerLinks.social.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-icon"
-                    aria-label={social.label}
-                  >
-                    {social.icon}
-                  </a>
+                  social.disabled ? (
+                    <span
+                      key={index}
+                      className="social-icon social-icon-disabled"
+                      aria-label={social.label}
+                    >
+                      {social.icon}
+                    </span>
+                  ) : (
+                    <a
+                      key={index}
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-icon"
+                      aria-label={social.label}
+                    >
+                      {social.icon}
+                    </a>
+                  )
                 ))}
               </div>
             </div>

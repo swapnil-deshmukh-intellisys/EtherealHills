@@ -41,7 +41,7 @@ const ContactUs = () => {
     {
       icon: <Phone />,
       title: "Phone Number",
-      details: ["+91-7720008787", "+91-9876543210"]
+      details: ["+91 84215 11990 / +91 8421174213"]
     },
     {
       icon: <MapPin />,

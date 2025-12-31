@@ -17,8 +17,8 @@
   height: 80vh;
   min-height: 600px;
   background:
-    linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%),
-    url('../Assets/galmmi.jpg');
+    linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%),
+    url('../Assets/s1.jpeg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -73,13 +73,13 @@
   font-weight: 800;
   margin-bottom: 1rem;
   line-height: 1.1;
-  color: #0f172a;
+  color: #ffffff;
   text-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
-  color: #334155;
+  color: #ffffff;
   margin-bottom: 2rem;
   line-height: 1.6;
   font-weight: 300;

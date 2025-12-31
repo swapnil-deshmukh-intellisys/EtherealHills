@@ -1,26 +1,18 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import ss1 from "../Assets/s1.jpeg";
+import s4 from "../Assets/s4.jpeg";
 import { 
   ArrowRight, 
   Globe, 
   Shield, 
   Heart, 
-  Trees,
-  Target,
-  Sparkles,
-  Star,
-  MapPin,
-  Users,
-  Award,
-  Calendar
+  Trees
 } from 'lucide-react';
 import styles from "./About.module.css";
-import aboutbg from "../Assets/aboutbg.jpg";
 
 const Aboutus = () => {
   const navigate = useNavigate();
-  
   const values = [
     {
       icon: <Globe />,

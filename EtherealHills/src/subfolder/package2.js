@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./package.css";
-import Gallery from "./gallary";
+// import Gallery from "./gallary";
 import Book from "./book";
 
 // Import images for Tent Stay, Glam Stay, and Dome Stay
@@ -65,9 +65,9 @@ function Package2() {
           
           <Book stayType={stayType} />
 
-          <div className="gallery-container">
+          {/* <div className="gallery-container">
             <Gallery galleryItems={gallery} stayType={stayType} />
-          </div>
+          </div> */}
         </>
       ) : (
         <p className="error-message">No package selected. Please go back and choose a package.</p>
